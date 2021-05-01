@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { Header } from './components/Header';
+// import { Header } from './components/Header';
 import {Map} from './components/Map';
 import {Profile} from './components/Profile';
+import { Home } from './components/Home';
 import { LoginForm } from './components/LoginForm';
 import './App.css';
 
 const PAGES = {
   map: <Map/>,
   profile: <Profile/>,
-  loginForm: <LoginForm/>
+  loginPage: <Home/>
 }
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { page: 'loginForm' }
+    this.state = { page: 'loginPage' }
   }
 
   navigateTo = (page) => {
@@ -22,12 +23,19 @@ class App extends React.Component {
   }
   render() {
     return (
+      // <React.Fragment>
+      //   <Header navigateTo={this.navigateTo}/>
+      //   <main>
+      //     <div>
+      //       {PAGES[this.state.page]}
+      //     </div>
+      //   </main>
+      // </React.Fragment>
+
       <React.Fragment>
-        <Header navigateTo={this.navigateTo}/>
         <main>
-          <div>
-            {PAGES[this.state.page]}
-          </div>
+          {PAGES[this.state.page]}
+          {this.state.page === 'loginPage' ? <LoginForm/> : null}
         </main>
       </React.Fragment>
     )

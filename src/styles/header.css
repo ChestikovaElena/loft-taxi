@@ -6,19 +6,14 @@ header {
   background-color: #1C1A19;
 }
 
-header .header-content {
+header .header__content {
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   height: 100px;
 }
 
-.logo {
-  display: flex;
-  align-items:center;
-}
-
-.logo-image {
+.header__logo .logo-image {
   margin-right: 15px;
 }
 
@@ -27,13 +22,13 @@ header .header-menu {
   align-items: center;
 }
 
-header .header-menu button {
+header .header__menu button {
   margin-right: 10px;
   color: #fff;
   font-size: 20px;
   text-transform: capitalize;
 }
 
-header .header-menu button:last-child {
+header .header__menu button:last-child {
   margin-right: 0;
 }
