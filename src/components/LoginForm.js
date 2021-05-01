@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
@@ -30,28 +29,10 @@ const CssTextField = withStyles({
     },
     '& .MuiInput-underline:after': {
       borderBottomColor: '#E4E4E4',
+      borderBottomWidth: '1px',
     },
-  },
-})(TextField);
-
-const validate = (email, value) => {
-  switch (email) {
-    case "inputName":
-      if (value !== "test@test.com") {
-        return "Неверный email";
-      } else {
-        return "";
-      }
-    case "password":
-      if (value !== "123123") {
-        return "Неверный пароль";
-      } else {
-        return "";
-      }
-    default:
-      return "";
   }
-};
+})(TextField);
 
 const LoginForm = ({ navigateTo }) => {
   const handlePage = (page) => {
