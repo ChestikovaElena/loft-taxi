@@ -2,6 +2,8 @@ import React from 'react';
 
 import Container from '@material-ui/core/container';
 import Button from "@material-ui/core/Button";
+import logo from '../images/icons/logo.png';
+import logoText from '../images/icons/logo-text.png';
 
 // import { withStyles } from "@material-ui/core";
 
@@ -30,7 +32,8 @@ const Header = ({ navigateTo }) => {
       <Container>
         <div className="header-content">
           <div className="logo">
-            
+            <img src={logo} alt="logo" className="logo-image"/>
+            <img src={logoText} alt="loft taxi" className="logo-text"/>
           </div>
           <div className="header-menu">
             <Button onClick={() => handlePage('map')} className='header__button'>Карта</Button>
