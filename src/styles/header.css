@@ -17,7 +17,7 @@ header .header__content {
   margin-right: 15px;
 }
 
-header .header-menu {
+header .header__menu {
   display: flex;
   align-items: center;
 }

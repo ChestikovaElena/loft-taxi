@@ -1,8 +1,8 @@
 .form__wrapper {
   position: absolute;
   top: 50%;
-  right: 190px;
-  transform: translateY(-50%);
+  right: 32%;
+  transform: translate(50%, -50%);
   width: 580px;
   background-color: #fff;
   border-radius: 20px;
@@ -40,6 +40,7 @@
   position: absolute;
   right: 0;
   bottom: -15px;
+  cursor: pointer;
 }
 
 .form__reg {
@@ -55,4 +56,8 @@
 .form__reg-button {
   color: #FDBF5A;
   text-decoration: none;
+}
+
+.StyledButton.Mui-hovered {
+  background-color: red;
 }

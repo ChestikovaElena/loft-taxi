@@ -11,7 +11,7 @@ const StyledButton = withStyles({
     border: 0,
     color: '#000',
     fontSize: '25px',
-    padding: '15px 140px',
+    padding: '15px 60px',
     '&:hover': {
       backgroundColor: '#FFA842',
     }
@@ -53,14 +53,14 @@ const validate = (email, value) => {
   }
 };
 
-const LoginForm = ({ navigateTo }) => {
+const RegForm = ({ navigateTo }) => {
   const handlePage = (page) => {
     navigateTo(page);
   }
 
     return (
       <div className='form__wrapper'>
-        <h2 className='form__title'>Войти</h2>
+        <h2 className='form__title'>Регистрация</h2>
         <form className='form__form'>
           <div className='form__row'>
           <CssTextField
@@ -77,38 +77,54 @@ const LoginForm = ({ navigateTo }) => {
             <p className="LoginForm__error">{email.error}</p>
           )} */}
           </div>
-          <div className="form__row row__after">
-          <CssTextField
-            //error={password.error.length > 0 && true}
-            required
-            className='form__input'
-            id="loginPassword"
-            label="Пароль"
-            type="password"
-            placeholder="*************"
-            //value={password.value}
-          />
-          {/* {password.error.length > 0 && (
-            <p className="LoginForm__error">{password.error}</p>
-          )} */}
+          <div className="form__row">
+            <CssTextField
+              //error={password.error.length > 0 && true}
+              required
+              className='form__input'
+              id="loginName"
+              label="Как вас зовут?"
+              type="text"
+              placeholder="Петр Александрович"
+              //value={password.value}
+            />
+            {/* {password.error.length > 0 && (
+              <p className="LoginForm__error">{password.error}</p>
+            )} */}
           </div>
           <div className="form__row">
-            <StyledButton
-              type="submit"
-              className='button form__button'
-              color="primary"
-              onClick={() => handlePage('map')}
-            >
-              Войти
-            </StyledButton>
+            <CssTextField
+              //error={password.error.length > 0 && true}
+              required
+              className='form__input'
+              id="loginPassword"
+              label="Придумайте пароль"
+              type="password"
+              placeholder="*************"
+              //value={password.value}
+            />
+            {/* {password.error.length > 0 && (
+              <p className="LoginForm__error">{password.error}</p>
+            )} */}
           </div>
+          <div className="form__row">
+              <StyledButton
+                type="submit"
+                className='button form__button'
+                color="primary"
+                onClick={() => handlePage('map')}
+              >
+                Зарегистрироваться
+              </StyledButton>
+            </div>
         </form>
         <div className='form__reg'>
-          <div className='form__reg-text'>Новый пользователь?</div>
-          <a href='#' onClick={() => handlePage('regPage')} className='form__reg-button'>Регистрация</a>
+          <div className='form__reg-text'>Уже зарегистрированы?</div>
+          <a href='#' onClick={() => handlePage('loginPage')} className='form__reg-button'>Войти</a>
         </div>
       </div>
     );
+  // };
 }
 
-export { LoginForm }
+export { RegForm }
