@@ -1,31 +1,46 @@
 import React from 'react';
 
-class Header extends React.Component {
-  state = {
-    visible: false,
-  }
+import Container from '@material-ui/core/container';
+import Button from "@material-ui/core/Button";
 
-  render() {
-    const {isLoggedIn} = this.props;
-    return (
-      <section className="header">
-        <div className="header__wrapper">
-          <div className="header__logo">
-            <div className="header__logo-img"></div>
-            <div className="header__logo-text"></div>
-          </div>
-          <nav className="header__menu">
-            <button className="menu__item">Карта</button>
-            <button className="menu__item">Профиль</button>
-            <button
-              className="menu__item">
-              {isLoggedIn ? 'Выйти' : 'Войти'}
-            </button>
-          </nav>
-        </div>
-      </section>
-    )
+// import { withStyles } from "@material-ui/core";
+
+// const styles = theme => ({
+//   appBar: {
+//     display: "flex",
+//     flexDirection: "row",
+//     alignItems: "center",
+//     justifyContent: "space-between",
+//     minHeight: "60px",
+//     backgroundColor: "#1C1A19",
+//     paddingLeft: "25px",
+//     paddingRight: "50px"
+//   },
+//   noDecor: {
+//     textDecoration: "none"
+//   }
+// });
+
+const Header = ({ navigateTo }) => {
+  const handlePage = (page) => {
+    navigateTo(page);
   }
-}
+  return (
+    <header>
+      <Container>
+        <div className="header-content">
+          <div className="logo">
+            
+          </div>
+          <div className="header-menu">
+            <Button onClick={() => handlePage('map')} className='header__button'>Карта</Button>
+            <Button onClick={() => handlePage('profile')} className='header__button'>Профиль</Button>
+            <Button onClick={() => handlePage('loginForm')} className='header__button'>Выйти</Button>
+          </div>
+        </div>
+      </Container>
+    </header>
+  );
+};
 
 export { Header }
