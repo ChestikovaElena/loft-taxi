@@ -2,10 +2,13 @@
 @import url('./styles/header.css');
 @import url('./styles/logo.css');
 @import url('./styles/homePage.css');
+@import url('./styles/form.css');
 
 .page__title {
   position: absolute;
   color: red;
-  font-size: 30px;
+  font-size: 40px;
   top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
 }

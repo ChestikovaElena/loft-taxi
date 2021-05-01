@@ -1,0 +1,58 @@
+.form__wrapper {
+  position: absolute;
+  top: 50%;
+  right: 190px;
+  transform: translateY(-50%);
+  width: 580px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 55px 115px;
+}
+
+.form__title {
+  font-weight: 700;
+  font-size: 30px;
+  display: block;
+  margin-bottom: 60px;
+}
+
+.form__row:last-child {
+  margin-top: 80px;
+}
+
+.form__input {
+  height: 60px;
+  width: 355px;
+}
+
+.row__after {
+  position: relative;
+}
+
+.row__after:after {
+  content: 'Забыли пароль?';
+  color: #828282;
+  height: 20px;
+  position: absolute;
+  right: 0;
+  bottom: -15px;
+}
+
+.form__reg {
+  margin-top: 30px;
+  display: flex;
+  color: #828282;
+}
+
+.form__reg-text {
+  margin-right: 5px;
+}
+
+.form__reg-button {
+  color: #FDBF5A;
+  text-decoration: none;
+}
