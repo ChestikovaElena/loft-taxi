@@ -35,51 +35,47 @@ const CssTextField = withStyles({
 })(TextField);
 
 const LoginForm = ({ navigateTo }) => {
-  const handlePage = (page) => {
-    navigateTo(page);
-  }
-
-    return (
-      <div className='form__wrapper'>
-        <h2 className='form__title'>Войти</h2>
-        <form className='form__form'>
-          <div className='form__row'>
-          <CssTextField
-            required
-            className='form__input'
-            id="loginEmail"
-            label="Email"
-            type="email"
-            placeholder="mail@mail.ru"
-          />
-          </div>
-          <div className="form__row row__after">
-          <CssTextField
-            required
-            className='form__input'
-            id="loginPassword"
-            label="Пароль"
-            type="password"
-            placeholder="*************"
-          />
-          </div>
-          <div className="form__row">
-            <StyledButton
-              type="submit"
-              className='button form__button'
-              color="primary"
-              onClick={() => handlePage('map')}
-            >
-              Войти
-            </StyledButton>
-          </div>
-        </form>
-        <div className='form__reg'>
-          <div className='form__reg-text'>Новый пользователь?</div>
-          <a href='#' onClick={() => handlePage('regPage')} className='form__reg-button'>Регистрация</a>
+  return (
+    <div className='form__wrapper'>
+      <h2 className='form__title'>Войти</h2>
+      <form className='form__form'>
+        <div className='form__row'>
+        <CssTextField
+          required
+          className='form__input'
+          id="loginEmail"
+          label="Email"
+          type="email"
+          placeholder="mail@mail.ru"
+        />
         </div>
+        <div className="form__row row__after">
+        <CssTextField
+          required
+          className='form__input'
+          id="loginPassword"
+          label="Пароль"
+          type="password"
+          placeholder="*************"
+        />
+        </div>
+        <div className="form__row">
+          <StyledButton
+            type="submit"
+            className='button form__button'
+            color="primary"
+            onClick={() => navigateTo('map')}
+          >
+            Войти
+          </StyledButton>
+        </div>
+      </form>
+      <div className='form__reg'>
+        <div className='form__reg-text'>Новый пользователь?</div>
+        <a href='#' onClick={() => navigateTo('regPage')} className='form__reg-button'>Регистрация</a>
       </div>
-    );
+    </div>
+  );
 }
 
 export { LoginForm }

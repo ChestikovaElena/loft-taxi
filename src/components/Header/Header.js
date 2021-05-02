@@ -6,9 +6,6 @@ import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 
 const Header = ({ navigateTo }) => {
-  const handlePage = (page) => {
-    navigateTo(page);
-  }
   return (
     <header>
       <Container>
@@ -19,19 +16,19 @@ const Header = ({ navigateTo }) => {
           </div>
           <nav className="header__menu">
             <Button 
-              onClick={() => handlePage('map')}
+              onClick={() => navigateTo('map')}
               className='header__button'
             >
               Карта
             </Button>
             <Button
-              onClick={() => handlePage('profile')}
+              onClick={() => navigateTo('profile')}
               className='header__button'
             >
               Профиль
             </Button>
             <Button
-              onClick={() => handlePage('loginPage')}
+              onClick={() => navigateTo('loginPage')}
               className='header__button'
             >
               Выйти

@@ -35,10 +35,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 const RegForm = ({ navigateTo }) => {
-  const handlePage = (page) => {
-    navigateTo(page);
-  }
-
   return (
     <div className='form__wrapper'>
       <h2 className='form__title'>Регистрация</h2>
@@ -78,7 +74,7 @@ const RegForm = ({ navigateTo }) => {
               type="submit"
               className='button form__button'
               color="primary"
-              onClick={() => handlePage('map')}
+              onClick={() => navigateTo('map')}
             >
               Зарегистрироваться
             </StyledButton>
@@ -86,7 +82,7 @@ const RegForm = ({ navigateTo }) => {
       </form>
       <div className='form__reg'>
         <div className='form__reg-text'>Уже зарегистрированы?</div>
-        <a href='#' onClick={() => handlePage('loginPage')} className='form__reg-button'>Войти</a>
+        <a href='#' onClick={() => navigateTo('loginPage')} className='form__reg-button'>Войти</a>
       </div>
     </div>
   );
