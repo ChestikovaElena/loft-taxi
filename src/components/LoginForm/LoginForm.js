@@ -45,33 +45,23 @@ const LoginForm = ({ navigateTo }) => {
         <form className='form__form'>
           <div className='form__row'>
           <CssTextField
-            //error={email.error.length > 0 && true}
             required
             className='form__input'
             id="loginEmail"
             label="Email"
             type="email"
             placeholder="mail@mail.ru"
-            //value={email.value}
           />
-          {/* {email.error.length > 0 && (
-            <p className="LoginForm__error">{email.error}</p>
-          )} */}
           </div>
           <div className="form__row row__after">
           <CssTextField
-            //error={password.error.length > 0 && true}
             required
             className='form__input'
             id="loginPassword"
             label="Пароль"
             type="password"
             placeholder="*************"
-            //value={password.value}
           />
-          {/* {password.error.length > 0 && (
-            <p className="LoginForm__error">{password.error}</p>
-          )} */}
           </div>
           <div className="form__row">
             <StyledButton

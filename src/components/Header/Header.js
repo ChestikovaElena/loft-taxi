@@ -5,24 +5,6 @@ import Button from "@material-ui/core/Button";
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 
-// import { withStyles } from "@material-ui/core";
-
-// const styles = theme => ({
-//   appBar: {
-//     display: "flex",
-//     flexDirection: "row",
-//     alignItems: "center",
-//     justifyContent: "space-between",
-//     minHeight: "60px",
-//     backgroundColor: "#1C1A19",
-//     paddingLeft: "25px",
-//     paddingRight: "50px"
-//   },
-//   noDecor: {
-//     textDecoration: "none"
-//   }
-// });
-
 const Header = ({ navigateTo }) => {
   const handlePage = (page) => {
     navigateTo(page);

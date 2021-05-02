@@ -39,73 +39,57 @@ const RegForm = ({ navigateTo }) => {
     navigateTo(page);
   }
 
-    return (
-      <div className='form__wrapper'>
-        <h2 className='form__title'>Регистрация</h2>
-        <form className='form__form'>
-          <div className='form__row'>
+  return (
+    <div className='form__wrapper'>
+      <h2 className='form__title'>Регистрация</h2>
+      <form className='form__form'>
+        <div className='form__row'>
+        <CssTextField
+          required
+          className='form__input'
+          id="loginEmail"
+          label="Email"
+          type="email"
+          placeholder="mail@mail.ru"
+        />
+        </div>
+        <div className="form__row">
           <CssTextField
-            //error={email.error.length > 0 && true}
             required
             className='form__input'
-            id="loginEmail"
-            label="Email"
-            type="email"
-            placeholder="mail@mail.ru"
-            //value={email.value}
+            id="loginName"
+            label="Как вас зовут?"
+            type="text"
+            placeholder="Петр Александрович"
           />
-          {/* {email.error.length > 0 && (
-            <p className="LoginForm__error">{email.error}</p>
-          )} */}
-          </div>
-          <div className="form__row">
-            <CssTextField
-              //error={password.error.length > 0 && true}
-              required
-              className='form__input'
-              id="loginName"
-              label="Как вас зовут?"
-              type="text"
-              placeholder="Петр Александрович"
-              //value={password.value}
-            />
-            {/* {password.error.length > 0 && (
-              <p className="LoginForm__error">{password.error}</p>
-            )} */}
-          </div>
-          <div className="form__row">
-            <CssTextField
-              //error={password.error.length > 0 && true}
-              required
-              className='form__input'
-              id="loginPassword"
-              label="Придумайте пароль"
-              type="password"
-              placeholder="*************"
-              //value={password.value}
-            />
-            {/* {password.error.length > 0 && (
-              <p className="LoginForm__error">{password.error}</p>
-            )} */}
-          </div>
-          <div className="form__row">
-              <StyledButton
-                type="submit"
-                className='button form__button'
-                color="primary"
-                onClick={() => handlePage('map')}
-              >
-                Зарегистрироваться
-              </StyledButton>
-            </div>
-        </form>
-        <div className='form__reg'>
-          <div className='form__reg-text'>Уже зарегистрированы?</div>
-          <a href='#' onClick={() => handlePage('loginPage')} className='form__reg-button'>Войти</a>
         </div>
+        <div className="form__row">
+          <CssTextField
+            required
+            className='form__input'
+            id="loginPassword"
+            label="Придумайте пароль"
+            type="password"
+            placeholder="*************"
+          />
+        </div>
+        <div className="form__row">
+            <StyledButton
+              type="submit"
+              className='button form__button'
+              color="primary"
+              onClick={() => handlePage('map')}
+            >
+              Зарегистрироваться
+            </StyledButton>
+          </div>
+      </form>
+      <div className='form__reg'>
+        <div className='form__reg-text'>Уже зарегистрированы?</div>
+        <a href='#' onClick={() => handlePage('loginPage')} className='form__reg-button'>Войти</a>
       </div>
-    );
-  // };
+    </div>
+  );
 }
 
 export { RegForm }
