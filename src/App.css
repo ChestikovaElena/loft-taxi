@@ -1,8 +1,7 @@
 @import url('./styles/layout.css');
-@import url('./styles/header.css');
-@import url('./styles/logo.css');
-@import url('./styles/homePage.css');
-@import url('./styles/form.css');
+@import url('./components/Home/homePage.css');
+@import url('./components/Header/header.css');
+@import url('./components/LoginForm/form.css');
 
 .page__title {
   position: absolute;

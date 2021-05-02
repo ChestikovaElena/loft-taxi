@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../images/icons/logo.png';
-import logoText from '../images/icons/logo-text.png';
+import logo from '../../images/icons/logo.png';
+import logoText from '../../images/icons/logo-text.png';
 
 class Home extends React.Component {
   render() {
@@ -18,4 +18,4 @@ class Home extends React.Component {
   };
 }
 
-export { Home }
+export { Home };

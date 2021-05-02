@@ -8,6 +8,11 @@
   background-color: #1C1A19;
 }
 
+.logo {
+  display: flex;
+  align-items:center;
+}
+
 .home-page__logo {
   height: 100%;
   flex-direction: column;

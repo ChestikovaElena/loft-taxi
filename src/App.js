@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Header } from './components/Header';
-import {Map} from './components/Map';
-import {Profile} from './components/Profile';
-import { Home } from './components/Home';
-import { LoginForm } from './components/LoginForm';
-import { RegForm } from './components/RegForm';
+import Header from './components/Header';
+import Map from './components/Map';
+import Profile from './components/Profile';
+import Home from './components/Home';
+import LoginForm from './components/LoginForm';
+import RegForm from './components/RegForm';
 import './App.css';
 
 const PAGES = {

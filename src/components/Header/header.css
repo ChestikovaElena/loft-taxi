@@ -13,6 +13,11 @@ header .header__content {
   height: 100px;
 }
 
+.logo {
+  display: flex;
+  align-items:center;
+}
+
 .header__logo .logo-image {
   margin-right: 15px;
 }
