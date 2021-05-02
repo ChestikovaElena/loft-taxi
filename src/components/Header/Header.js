@@ -17,7 +17,7 @@ const Header = ({ navigateTo }) => {
             <img src={logo} alt="logo" className="logo-image"/>
             <img src={logoText} alt="loft taxi" className="logo-text"/>
           </div>
-          <div className="header__menu">
+          <nav className="header__menu">
             <Button 
               onClick={() => handlePage('map')}
               className='header__button'
@@ -36,7 +36,7 @@ const Header = ({ navigateTo }) => {
             >
               Выйти
             </Button>
-          </div>
+          </nav>
         </div>
       </Container>
     </header>
