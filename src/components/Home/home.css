@@ -25,5 +25,5 @@
 
 .right-column {
   flex: 1;
-  background-color: grey;
+  background: url(../../images/map.jpg);
 }
