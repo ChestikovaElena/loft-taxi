@@ -1,2 +1,2 @@
-import { Header } from './Header';
-export default Header;
+import { HeaderWithAuth } from './Header';
+export default HeaderWithAuth;

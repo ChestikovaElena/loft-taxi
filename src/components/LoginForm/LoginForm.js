@@ -2,6 +2,7 @@ import React from 'react';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
+import { withAuth } from '../AuthContext/AuthContext';
 
 const StyledButton = withStyles({
   root: {
@@ -34,48 +35,75 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-const LoginForm = ({ navigateTo }) => {
-  return (
-    <div className='form__wrapper'>
-      <h2 className='form__title'>Войти</h2>
-      <form className='form__form'>
-        <div className='form__row'>
-        <CssTextField
-          required
-          className='form__input'
-          id="loginEmail"
-          label="Email"
-          type="email"
-          placeholder="mail@mail.ru"
-        />
+class LoginForm extends React.Component {
+  state = {email: '', password: ''};
+
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  goToRegistration = (event) => {
+    event.preventDefault();
+    this.props.navigateTo('regPage');
+  }
+
+  authenticate = (event) => {
+    event.preventDefault();
+    this.props.logIn(this.state.email, this.state.password);
+    this.props.navigateTo('map');
+  };
+
+  render() {
+    const { email, password } = this.state;
+    return (
+      <div className='form__wrapper'>
+        <h2 className='form__title'>Войти</h2>
+        <form className='form__form'>
+          <div className='form__row'>
+            <CssTextField
+              required
+              className='form__input'
+              id="email"
+              label="Email"
+              type="email"
+              name="email"
+              placeholder="mail@mail.ru"
+              value = {email}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form__row row__after">
+            <CssTextField
+              required
+              className='form__input'
+              id="password"
+              label="Пароль"
+              type="password"
+              name="password"
+              placeholder="*************"
+              value = {password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form__row">
+            <StyledButton
+              type="submit"
+              className='button form__button'
+              color="primary"
+              onClick={this.authenticate}
+            >
+              Войти
+            </StyledButton>
+          </div>
+        </form>
+        <div className='form__reg'>
+          <div className='form__reg-text'>Новый пользователь?</div>
+          <span onClick={this.goToRegistration} className='form__reg-button'>Регистрация</span>
         </div>
-        <div className="form__row row__after">
-        <CssTextField
-          required
-          className='form__input'
-          id="loginPassword"
-          label="Пароль"
-          type="password"
-          placeholder="*************"
-        />
-        </div>
-        <div className="form__row">
-          <StyledButton
-            type="submit"
-            className='button form__button'
-            color="primary"
-            onClick={() => navigateTo('map')}
-          >
-            Войти
-          </StyledButton>
-        </div>
-      </form>
-      <div className='form__reg'>
-        <div className='form__reg-text'>Новый пользователь?</div>
-        <a href='#' onClick={() => navigateTo('regPage')} className='form__reg-button'>Регистрация</a>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-export { LoginForm }
+const LoginFormWithAuth = withAuth(LoginForm);
+export { LoginFormWithAuth };

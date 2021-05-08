@@ -74,7 +74,7 @@ const RegForm = ({ navigateTo }) => {
               type="submit"
               className='button form__button'
               color="primary"
-              onClick={() => navigateTo('map')}
+              onClick={() => navigateTo('loginPage')}
             >
               Зарегистрироваться
             </StyledButton>
@@ -82,7 +82,7 @@ const RegForm = ({ navigateTo }) => {
       </form>
       <div className='form__reg'>
         <div className='form__reg-text'>Уже зарегистрированы?</div>
-        <a href='#' onClick={() => navigateTo('loginPage')} className='form__reg-button'>Войти</a>
+        <span onClick={() => navigateTo('loginPage')} className='form__reg-button'>Войти</span>
       </div>
     </div>
   );

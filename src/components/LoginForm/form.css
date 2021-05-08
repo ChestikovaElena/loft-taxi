@@ -56,6 +56,7 @@
 .form__reg-button {
   color: #FDBF5A;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .StyledButton.Mui-hovered {
