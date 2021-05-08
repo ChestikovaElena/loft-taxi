@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderWithAuth from './components/Header';
 import Map from './components/Map';
-import ProfileWithAuth from './components/Profile';
+import Profile from './components/Profile';
 import Home from './components/Home';
 import LoginFormWithAuth from './components/LoginForm';
 import RegForm from './components/RegForm';
@@ -27,7 +27,7 @@ class App extends React.Component {
           (<>
             <HeaderWithAuth navigateTo={this.navigateTo}/>
             {this.state.page === 'map' && <Map navigateTo={this.navigateTo}/>}
-            {this.state.page === 'profile' && <ProfileWithAuth navigateTo={this.navigateTo}/>}
+            {this.state.page === 'profile' && <Profile navigateTo={this.navigateTo}/>}
           </>) : (<>
             <Home />
             {this.state.page === 'loginPage' && <LoginFormWithAuth navigateTo={this.navigateTo}/>}

@@ -1,5 +1,4 @@
 import React from 'react';
-import { withAuth } from '../AuthContext/AuthContext';
 
 export class Profile extends React.Component {
   render() {
@@ -10,5 +9,3 @@ export class Profile extends React.Component {
     )
   }
 }
-
-export const ProfileWithAuth = withAuth(Profile);
