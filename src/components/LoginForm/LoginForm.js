@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
@@ -36,6 +37,11 @@ const CssTextField = withStyles({
 })(TextField);
 
 class LoginForm extends React.Component {
+  static propTypes = {
+    navigateTo: PropTypes.func,
+    logIn: PropTypes.func
+  }
+
   state = {email: '', password: ''};
 
   handleChange = event => {

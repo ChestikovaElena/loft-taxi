@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from '@material-ui/core/container';
 import Button from "@material-ui/core/Button";
@@ -6,8 +7,12 @@ import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import { withAuth } from "../AuthContext/AuthContext";
 
-// const Header = ({ navigateTo }) => {
 class Header extends React.Component {
+  static propTypes = {
+  logOut: PropTypes.func,
+  navigateTo: PropTypes.func
+}
+
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
