@@ -6,10 +6,9 @@ export const AuthProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const logIn = (email, password) => {
-    if (email !== 'v@email.com' || password !== '1') {
-      return;
-    }
-    setIsLoggedIn(true);
+    if (email === 'v@email.com' && password === '1') {
+      setIsLoggedIn(true);
+    };
   };
 
   const logOut = () => {

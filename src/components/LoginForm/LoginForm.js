@@ -56,7 +56,9 @@ class LoginForm extends React.Component {
   authenticate = (event) => {
     event.preventDefault();
     this.props.logIn(this.state.email, this.state.password);
-    this.props.navigateTo('map');
+    if (this.props.isLoggedIn) {
+      this.props.navigateTo('map');
+    };
   };
 
   render() {
