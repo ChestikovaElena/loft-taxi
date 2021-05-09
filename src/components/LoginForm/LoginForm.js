@@ -36,6 +36,25 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
+const validate = (name, value) => {
+  switch (name) {
+    case "email":
+      if (value !== "v@email.com") {
+        return "Неверный логин";
+      } else {
+        return "";
+      }
+    case "password":
+      if (value !== "1") {
+        return "Неверный пароль";
+      } else {
+        return "";
+      };
+    default:
+      return "";
+  }
+}
+
 class LoginForm extends React.Component {
   static propTypes = {
     navigateTo: PropTypes.func,
@@ -56,9 +75,6 @@ class LoginForm extends React.Component {
   authenticate = (event) => {
     event.preventDefault();
     this.props.logIn(this.state.email, this.state.password);
-    if (this.props.isLoggedIn) {
-      this.props.navigateTo('map');
-    };
   };
 
   render() {
@@ -75,6 +91,7 @@ class LoginForm extends React.Component {
               label="Email"
               type="email"
               name="email"
+              data-testid="emailInput"
               placeholder="mail@mail.ru"
               value = {email}
               onChange={this.handleChange}
@@ -88,6 +105,7 @@ class LoginForm extends React.Component {
               label="Пароль"
               type="password"
               name="password"
+              data-testid="passwordInput"
               placeholder="*************"
               value = {password}
               onChange={this.handleChange}
@@ -97,6 +115,7 @@ class LoginForm extends React.Component {
             <StyledButton
               type="submit"
               className='button form__button'
+              data-testid="submitButton"
               color="primary"
               onClick={this.authenticate}
             >

@@ -21,14 +21,14 @@ class Header extends React.Component {
 
   render() {
     return (
-      <header>
+      <header data-testid="header">
         <Container>
           <div className="header__content">
             <div className="logo header__logo">
               <img src={logo} alt="logo" className="logo-image"/>
               <img src={logoText} alt="loft taxi" className="logo-text"/>
             </div>
-            <nav className="header__menu">
+            <nav className="header__menu" data-testid="menu">
               <Button 
                 onClick={() => this.props.navigateTo('map')}
                 className='header__button'

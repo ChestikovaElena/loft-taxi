@@ -47,6 +47,7 @@ const RegForm = ({ navigateTo }) => {
           id="loginEmail"
           label="Email"
           type="email"
+          data-testid="emailInput"
           placeholder="mail@mail.ru"
         />
         </div>
@@ -57,6 +58,7 @@ const RegForm = ({ navigateTo }) => {
             id="loginName"
             label="Как вас зовут?"
             type="text"
+            data-testid="nameInput"
             placeholder="Петр Александрович"
           />
         </div>
@@ -67,6 +69,7 @@ const RegForm = ({ navigateTo }) => {
             id="loginPassword"
             label="Придумайте пароль"
             type="password"
+            data-testid="passwordInput"
             placeholder="*************"
           />
         </div>
@@ -74,6 +77,7 @@ const RegForm = ({ navigateTo }) => {
             <StyledButton
               type="submit"
               className='button form__button'
+              data-testid="regButton"
               color="primary"
               onClick={() => navigateTo('loginPage')}
             >
@@ -83,7 +87,12 @@ const RegForm = ({ navigateTo }) => {
       </form>
       <div className='form__reg'>
         <div className='form__reg-text'>Уже зарегистрированы?</div>
-        <span onClick={() => navigateTo('loginPage')} className='form__reg-button'>Войти</span>
+        <span 
+          onClick={() => navigateTo('loginPage')}
+          className='form__reg-button'
+          data-testid="loginButton">
+          Войти
+        </span>
       </div>
     </div>
   );

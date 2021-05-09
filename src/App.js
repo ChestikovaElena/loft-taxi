@@ -10,10 +10,6 @@ import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends React.Component {
-  static propTypes = {
-    isLoggedIn: PropTypes.bool
-  };
-
   state = { page: 'loginPage' };
 
   navigateTo = (page) => {
@@ -37,6 +33,10 @@ class App extends React.Component {
       </main>
     );
   };
+};
+
+App.propTypes = {
+  isLoggedIn: PropTypes.bool
 };
 
 export default withAuth(App);
