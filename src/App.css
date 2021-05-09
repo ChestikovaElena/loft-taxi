@@ -1,5 +1,5 @@
 @import url('./styles/layout.css');
-@import url('./components/Home/home.css');
+@import url('./pages/Home/home.css');
 @import url('./components/Header/header.css');
 @import url('./components/LoginForm/form.css');
 @import url('./components/Map/map.css');

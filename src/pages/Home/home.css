@@ -26,4 +26,7 @@
 .right-column {
   flex: 1;
   background: url(../../images/map.jpg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

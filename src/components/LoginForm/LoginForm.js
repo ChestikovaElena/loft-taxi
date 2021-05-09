@@ -36,25 +36,6 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-const validate = (name, value) => {
-  switch (name) {
-    case "email":
-      if (value !== "v@email.com") {
-        return "Неверный логин";
-      } else {
-        return "";
-      }
-    case "password":
-      if (value !== "1") {
-        return "Неверный пароль";
-      } else {
-        return "";
-      };
-    default:
-      return "";
-  }
-}
-
 class LoginForm extends React.Component {
   static propTypes = {
     navigateTo: PropTypes.func,
