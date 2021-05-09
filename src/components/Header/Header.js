@@ -5,7 +5,7 @@ import Container from '@material-ui/core/container';
 import Button from "@material-ui/core/Button";
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
-import { withAuth } from "../AuthContext/AuthContext";
+import withAuth from "../AuthContext";
 
 class Header extends React.Component {
   static propTypes = {

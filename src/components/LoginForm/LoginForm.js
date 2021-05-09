@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
-import { withAuth } from '../AuthContext/AuthContext';
+import withAuth from '../AuthContext';
 
 const StyledButton = withStyles({
   root: {

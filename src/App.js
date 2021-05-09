@@ -5,7 +5,7 @@ import Profile from './components/Profile';
 import Home from './components/Home';
 import LoginFormWithAuth from './components/LoginForm';
 import RegForm from './components/RegForm';
-import {withAuth} from './components/AuthContext/AuthContext';
+import withAuth from './components/AuthContext';
 import PropTypes from 'prop-types';
 import './App.css';
 
