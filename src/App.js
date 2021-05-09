@@ -26,7 +26,7 @@ class App extends React.Component {
         {(this.props.isLoggedIn) ? 
           (<>
             <HeaderWithAuth navigateTo={this.navigateTo}/>
-            {this.state.page === 'map' && <Map navigateTo={this.navigateTo}/>}
+            {(this.state.page === 'map' || this.state.page === 'loginPage') && <Map navigateTo={this.navigateTo}/>}
             {this.state.page === 'profile' && <Profile navigateTo={this.navigateTo}/>}
           </>) : (<>
             <Home />
