@@ -14,17 +14,28 @@ class App extends React.Component {
     this.setState({ page });
   };
 
+  renderPage(){
+    switch (this.state.page) {
+      case "map":
+      case "loginPage":
+        return <Map navigateTo={this.navigateTo}/>;
+      case "profile":
+        return <Profile navigateTo={this.navigateTo}/>;
+      default:
+        return "";
+    };
+  };
+
   render() {
     return (
       <main data-testid="container">
         {(this.props.isLoggedIn) ? 
           (<>
             <HeaderWithAuth navigateTo={this.navigateTo}/>
-            {(this.state.page === 'map' || this.state.page === 'loginPage') && <Map navigateTo={this.navigateTo}/>}
-            {this.state.page === 'profile' && <Profile navigateTo={this.navigateTo}/>}
-          </>) : (<>
+            {this.renderPage()}
+          </>) : (
             <Home navigateTo={this.navigateTo} page={this.state.page}/>
-          </>)
+          )
         }
       </main>
     );

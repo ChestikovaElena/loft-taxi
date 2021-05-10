@@ -11,6 +11,17 @@ class Home extends React.Component {
     page: PropTypes.string
   };
 
+  renderPage(){
+    switch (this.props.page) {
+      case "loginPage":
+        return <LoginFormWithAuth navigateTo={this.props.navigateTo}/>;
+      case "regPage":
+        return <RegForm navigateTo={this.props.navigateTo}/>;
+      default:
+        return "";
+    };
+  };
+
   render() {
     return (
       <div className='container'>
@@ -21,10 +32,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="right-column">
-          <>
-            {this.props.page === 'loginPage' && <LoginFormWithAuth navigateTo={this.props.navigateTo}/>}
-            {this.props.page === 'regPage' && <RegForm navigateTo={this.props.navigateTo}/>}
-          </>
+          {this.renderPage()}
         </div>
       </div>
     );
