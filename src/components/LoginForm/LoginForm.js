@@ -42,11 +42,20 @@ class LoginForm extends React.Component {
     logIn: PropTypes.func
   }
 
-  state = {email: '', password: ''};
+  state = {email: '', password: '', errorTextEmail: ''};
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  handleChangeEmail = event => {
+    this.setState({ email: event.target.value });
+  };
+
+  validateEmail = email => {
+    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase);
+  }
 
   goToRegistration = (event) => {
     event.preventDefault();
@@ -55,11 +64,14 @@ class LoginForm extends React.Component {
 
   authenticate = (event) => {
     event.preventDefault();
+    if (!this.validateEmail(this.state.email)) {
+      this.setState({ errorTextEmail: 'Некорректный email' });
+    }
     this.props.logIn(this.state.email, this.state.password);
   };
 
   render() {
-    const { email, password } = this.state;
+    const { email, password, errorText } = this.state;
     return (
       <div className='form__wrapper'>
         <h2 className='form__title'>Войти</h2>
@@ -75,7 +87,9 @@ class LoginForm extends React.Component {
               data-testid="emailInput"
               placeholder="mail@mail.ru"
               value = {email}
-              onChange={this.handleChange}
+              error= {this.state.errorTextEmail === '' ? false : true}
+              helperText={this.state.errorTextEmail}
+              onChange={this.handleChangeEmail}
             />
           </div>
           <div className="form__row row__after">

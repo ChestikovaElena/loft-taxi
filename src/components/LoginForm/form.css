@@ -16,6 +16,10 @@
   margin-bottom: 60px;
 }
 
+.form__row {
+  margin-bottom: 10px;
+}
+
 .form__row:last-child {
   margin-top: 80px;
 }
