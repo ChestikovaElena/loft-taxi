@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
               data-testid="emailInput"
               placeholder="mail@mail.ru"
               value = {email}
-              error= {this.state.errorTextEmail === '' ? false : true}
+              error= {this.state.errorTextEmail !== ''}
               helperText={this.state.errorTextEmail}
               onChange={this.handleChangeEmail}
             />
