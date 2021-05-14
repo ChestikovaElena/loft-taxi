@@ -1,0 +1,42 @@
+.card {
+  padding: 20px 15px 15px 30px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card__wrapper {
+  width: 305px;
+  height: 145px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-image--card {
+  width: 33px;
+  height: 33px;
+}
+
+.card__date {
+  font-size: 12px;
+}
+
+.card__number {
+  font-size: 21px;
+}
+
+.card__chip {
+  width: 29px;
+  height: 26px;
+}
+
+.card__masterCard {
+  width: 46px;
+  height: 28px;
+}

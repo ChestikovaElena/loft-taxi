@@ -24,6 +24,10 @@
   margin-top: 80px;
 }
 
+.form__block {
+  margin-top: 40px;
+}
+
 .form__input {
   height: 60px;
   width: 355px;

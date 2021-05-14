@@ -3,12 +3,6 @@
 @import url('./components/Header/header.css');
 @import url('./components/LoginForm/form.css');
 @import url('./components/Map/map.css');
-
-.page__title {
-  position: absolute;
-  color: red;
-  font-size: 40px;
-  top: 150px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+@import url('./pages/Profile/profile.css');
+@import url('./components/ProfileForm/card.css');
+@import url('./components/ProfileWarning/warning.css');

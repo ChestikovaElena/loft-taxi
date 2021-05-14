@@ -71,7 +71,7 @@ class LoginForm extends React.Component {
   };
 
   render() {
-    const { email, password, errorText } = this.state;
+    const { email, password, errorTextEmail } = this.state;
     return (
       <div className='form__wrapper'>
         <h2 className='form__title'>Войти</h2>
@@ -87,8 +87,8 @@ class LoginForm extends React.Component {
               data-testid="emailInput"
               placeholder="mail@mail.ru"
               value = {email}
-              error= {this.state.errorTextEmail !== ''}
-              helperText={this.state.errorTextEmail}
+              error= {errorTextEmail !== ''}
+              helperText={errorTextEmail}
               onChange={this.handleChangeEmail}
             />
           </div>
