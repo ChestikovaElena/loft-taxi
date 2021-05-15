@@ -1,2 +1,2 @@
-import { LoginFormWithAuth } from './LoginForm.js'
-export default LoginFormWithAuth
+import { LoginFormWithConnect } from './LoginForm.js'
+export default LoginFormWithConnect

@@ -3,38 +3,28 @@ import HeaderWithAuth from './components/Header';
 import Map from './components/Map';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
-import withAuth from './components/AuthContext';
+import RegPage from './pages/RegPage';
+import { connect } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import { PrivateRoute } from './PrivateRoute';
 import PropTypes from 'prop-types';
 import './App.css';
 
 class App extends React.Component {
-  state = { page: 'loginPage' };
-
-  navigateTo = (page) => {
-    this.setState({ page });
-  };
-
-  renderPage(){
-    switch (this.state.page) {
-      case "map":
-      case "loginPage":
-        return <Map navigateTo={this.navigateTo}/>;
-      case "profile":
-        return <Profile navigateTo={this.navigateTo}/>;
-      default:
-        return "";
-    };
-  };
-
   render() {
     return (
       <main data-testid="container">
-        {(this.props.isLoggedIn) ? 
+        {(this.props.isLoggedIn) ?
           (<>
-            <HeaderWithAuth navigateTo={this.navigateTo}/>
-            {this.renderPage()}
+            <Switch>
+              <PrivateRoute path="/map" component={Map} />
+              <PrivateRoute path="/profile" component={Profile} />
+            </Switch>
           </>) : (
-            <Home navigateTo={this.navigateTo} page={this.state.page}/>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/regForm" component={RegPage} />
+            </Switch>
           )
         }
       </main>
@@ -46,4 +36,8 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-export default withAuth(App);
+// const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
+// const mapDispatchToProps = () => ({})
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);

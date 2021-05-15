@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from "react-router-dom";
 
 const StyledButton = withStyles({
   root: {
@@ -35,7 +35,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const RegForm = ({ navigateTo }) => {
+const RegForm = () => {
   return (
     <div className='form__wrapper'>
       <h2 className='form__title'>Регистрация</h2>
@@ -74,32 +74,15 @@ const RegForm = ({ navigateTo }) => {
           />
         </div>
         <div className="form__row">
-            <StyledButton
-              type="submit"
-              className='button form__button'
-              data-testid="regButton"
-              color="primary"
-              onClick={() => navigateTo('loginPage')}
-            >
-              Зарегистрироваться
-            </StyledButton>
-          </div>
+          <Link to="/" className='button form__button'>Зарегистрироваться</Link>
+        </div>
       </form>
       <div className='form__reg'>
         <div className='form__reg-text'>Уже зарегистрированы?</div>
-        <span 
-          onClick={() => navigateTo('loginPage')}
-          className='form__reg-button'
-          data-testid="loginButton">
-          Войти
-        </span>
+        <Link to="/" className='form__reg-button'>Войти</Link>
       </div>
     </div>
   );
 }
-
-RegForm.propTypes = {
-  navigate: PropTypes.func
-};
 
 export { RegForm }

@@ -1,10 +1,10 @@
 import React from 'react';
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
-import LoginFormWithConnect from '../../components/LoginForm';
+import RegForm from '../../components/RegForm';
 import PropTypes from 'prop-types';
 
-class Home extends React.Component {
+class RegPage extends React.Component {
   static propTypes = {
     page: PropTypes.string
   };
@@ -19,11 +19,11 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="right-column">
-          <LoginFormWithConnect />
+          <RegForm />
         </div>
       </div>
     );
   };
 }
 
-export { Home };
+export { RegPage };

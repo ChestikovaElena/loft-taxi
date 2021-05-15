@@ -2,10 +2,10 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import App from "./App.js";
 
-jest.mock("./components/LoginForm", () => ({ LoginFormWithAuth: () => <div>Home content</div> }));
+jest.mock("./components/LoginForm", () => ({ LoginFormWithConnect: () => <div>Home content</div> }));
 jest.mock("./components/Map", () => ({ Map: () => <div>Map content</div> }));
 jest.mock("./pages/Home", () => ({ Home: () => <div>Home content</div> }));
-jest.mock("./components/Profile", () => ({ Profile: () => <div>Profile content</div> }));
+jest.mock("./pages/Profile", () => ({ Profile: () => <div>Profile content</div> }));
 
 describe("App", () => {
   it("renders correctly", () => {

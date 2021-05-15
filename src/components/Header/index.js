@@ -1,2 +1,2 @@
-import { HeaderWithAuth } from './Header';
-export default HeaderWithAuth;
+import { HeaderWithConnect } from './Header';
+export default HeaderWithConnect;

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
-import withAuth from '../AuthContext';
+import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
+import { authenticate } from '../../store/actions/actions';
 
 const StyledButton = withStyles({
   root: {
@@ -38,7 +40,6 @@ const CssTextField = withStyles({
 
 class LoginForm extends React.Component {
   static propTypes = {
-    navigateTo: PropTypes.func,
     logIn: PropTypes.func
   }
 
@@ -57,17 +58,12 @@ class LoginForm extends React.Component {
     return re.test(String(email).toLowerCase);
   }
 
-  goToRegistration = (event) => {
-    event.preventDefault();
-    this.props.navigateTo('regPage');
-  }
-
   authenticate = (event) => {
     event.preventDefault();
     if (!this.validateEmail(this.state.email)) {
       this.setState({ errorTextEmail: 'Некорректный email' });
     }
-    this.props.logIn(this.state.email, this.state.password);
+    this.props.authenticate(this.state.email, this.state.password);
   };
 
   render() {
@@ -120,12 +116,15 @@ class LoginForm extends React.Component {
         </form>
         <div className='form__reg'>
           <div className='form__reg-text'>Новый пользователь?</div>
-          <span onClick={this.goToRegistration} className='form__reg-button'>Регистрация</span>
+          <Link to="/regForm"  className='form__reg-button'>Регистрация</Link>
         </div>
       </div>
     );
   }
 }
 
-const LoginFormWithAuth = withAuth(LoginForm);
-export { LoginFormWithAuth };
+const mapStateToProps = () => ({});
+const mapDispatchToProps = {authenticate};
+const LoginFormWithConnect = connect( mapStateToProps, mapDispatchToProps)(LoginForm);
+
+export { LoginFormWithConnect };

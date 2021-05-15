@@ -5,18 +5,18 @@ import Container from '@material-ui/core/container';
 import Button from "@material-ui/core/Button";
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
-import withAuth from "../AuthContext";
+import { connect } from 'react-redux';
+import { logOut } from '../../store/actions/actions';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
   static propTypes = {
-  logOut: PropTypes.func,
-  navigateTo: PropTypes.func
+  logOut: PropTypes.func
 }
 
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
-    this.props.navigateTo('loginPage');
   };
 
   render() {
@@ -29,18 +29,8 @@ class Header extends React.Component {
               <img src={logoText} alt="loft taxi" className="logo-text"/>
             </div>
             <nav className="header__menu" data-testid="menu">
-              <Button 
-                onClick={() => this.props.navigateTo('map')}
-                className='header__button'
-              >
-                Карта
-              </Button>
-              <Button
-                onClick={() => this.props.navigateTo('profile')}
-                className='header__button'
-              >
-                Профиль
-              </Button>
+              <Link to="/map" className='header__button'>Карта</Link>
+              <Link to="/profile" className='header__button'>Профиль</Link>
               <Button
                 onClick={this.unauthenticate}
                 className='header__button'
@@ -55,5 +45,8 @@ class Header extends React.Component {
   };
 };
 
-const HeaderWithAuth = withAuth(Header);
-export { HeaderWithAuth };
+const HeaderWithConnect = connect(
+  null,
+  { logOut }
+)(Header);
+export { HeaderWithConnect };
