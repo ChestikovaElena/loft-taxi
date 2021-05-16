@@ -10,7 +10,7 @@ jest.mock("./pages/Profile", () => ({ Profile: () => <div>Profile content</div> 
 describe("App", () => {
   it("renders correctly", () => {
     const { container } = render(<App />);
-    expect(container.innerHTML).toMatch("Home content");
+    expect(container.innerHTML).toMatch("Map content");
   });
 
   describe("when clicked on navigation buttons", () => {

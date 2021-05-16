@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
@@ -56,11 +55,6 @@ class ProfileComponent extends React.Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  // goToMap = (event) => {
-  //   event.preventDefault();
-  //   this.props.navigateTo('map');
-  // }
 
   render() {
     return (
@@ -180,5 +174,3 @@ const mapStateToProps = ({ card, auth }) => ({
 const mapDispatchToProps = {getCard};
 
 export const ProfileForm = connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
-
-// export { ProfileForm };

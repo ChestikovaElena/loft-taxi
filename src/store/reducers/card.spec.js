@@ -19,9 +19,8 @@ describe("card", () => {
   describe("#GET_CARDS_FAILURE", () => {
     it('returns isLoggedIn false', () => {
       expect(card({}, getCardFailure())).toEqual({
-        "isLoggedIn": false,
-        "error": undefined,
-        "isLoadding": false});
+        "isLoadding": false,
+        "isLoggedIn": false});
     });
   });
 });
