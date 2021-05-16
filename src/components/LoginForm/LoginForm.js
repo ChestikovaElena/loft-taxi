@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import { authenticate } from '../../store/actions/actions';
+import { authenticate } from '../../store/actions/auth';
 
 const StyledButton = withStyles({
   root: {

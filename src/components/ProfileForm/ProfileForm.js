@@ -1,8 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
+import {getCard} from '../../store/actions//card';
+
 import logo from '../../images/icons/logo.png';
 import chip from '../../images/icons/chip.png';
 import masterCard from '../../images/icons/masterCard.png';
@@ -38,46 +41,36 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-class ProfileForm extends React.Component {
-  static propTypes = {
-    navigateTo: PropTypes.func,
-    logIn: PropTypes.func
-  }
+class ProfileComponent extends React.Component {
+  // static propTypes = {
+  //   navigateTo: PropTypes.func,
+  //   logIn: PropTypes.func
+  // }
+  // useEffect(() => {
+  //   getCard(token);
+  // }, [(token)]);
+  
+  componentDidMount() {
+    this.props.getCard(this.props.token);
+  };
 
   state = {
-    name: '', errorTextName: '',
-    card: '', errorTextCard: '',
-    date: '', errorTextDate: '',
-    cvc: '', errorTextCvc: ''};
+    errorTextName: '',
+    errorTextCard: '',
+    errorTextDate: '',
+    errorTextCvc: ''
+  };
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // handleChangeEmail = event => {
-  //   this.setState({ email: event.target.value });
-  // };
-
-  // validateEmail = email => {
-  //   const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-  //   return re.test(String(email).toLowerCase);
+  // goToMap = (event) => {
+  //   event.preventDefault();
+  //   this.props.navigateTo('map');
   // }
 
-  goToMap = (event) => {
-    event.preventDefault();
-    this.props.navigateTo('map');
-  }
-
-  // authenticate = (event) => {
-  //   event.preventDefault();
-  //   if (!this.validateEmail(this.state.email)) {
-  //     this.setState({ errorTextEmail: 'Некорректный email' });
-  //   }
-  //   this.props.logIn(this.state.email, this.state.password);
-  // };
-
   render() {
-    const { name, card, date, cvc } = this.state;
     return (
       <div className='form__wrapper form__wrapper--profile'>
         <h2 className='form__title form__title--profile'>Профиль</h2>
@@ -86,6 +79,7 @@ class ProfileForm extends React.Component {
           <div className="form__block">
             <div className='form__column'>
               <div className='form__row'>
+              {console.log(this.props.cardData)}
                 <CssTextField
                   required
                   className='form__input'
@@ -96,7 +90,7 @@ class ProfileForm extends React.Component {
                   name="name"
                   data-testid="nameInput"
                   placeholder="Loft"
-                  value = {name}
+                  value = {this.props.cardData.cardName}
                   error= {this.state.errorTextName !== ''}
                   helperText={this.state.errorTextName}
                   onChange={this.handleChange}
@@ -111,7 +105,7 @@ class ProfileForm extends React.Component {
                   name="card"
                   data-testid="cardInput"
                   placeholder="*************"
-                  value = {card}
+                  value = {this.props.cardData.cardNumber}
                   error= {this.state.errorTextCard !== ''}
                   helperText={this.state.errorTextCard}
                   onChange={this.handleChange}
@@ -127,7 +121,7 @@ class ProfileForm extends React.Component {
                     name="date"
                     data-testid="dateInput"
                     placeholder="05/08"
-                    value = {date}
+                    value = {this.props.cardData.expiryDate}
                     error= {this.state.errorTextDate !== ''}
                     helperText={this.state.errorTextDate}
                     onChange={this.handleChange}
@@ -142,7 +136,7 @@ class ProfileForm extends React.Component {
                     name="cvc"
                     data-testid="cvcInput"
                     placeholder="667"
-                    value = {cvc}
+                    value = {this.props.cardData.cvc}
                     error= {this.state.errorTextCvc !== ''}
                     helperText={this.state.errorTextCvc}
                     onChange={this.handleChange}
@@ -185,4 +179,15 @@ class ProfileForm extends React.Component {
   }
 }
 
-export { ProfileForm };
+const mapStateToProps = ({ card, auth }) => ({
+  token: auth.token,
+  cardData: card.data,
+  isLoadding: card.isLoadding,
+  error: card.error,
+})
+
+const mapDispatchToProps = {getCard};
+
+export const ProfileForm = connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
+
+// export { ProfileForm };

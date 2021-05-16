@@ -15,10 +15,11 @@ class App extends React.Component {
     return (
       <main data-testid="container">
         <Switch>
-          <PrivateRoute path="/map" component={Map} />
+          {/* <PrivateRoute path="/map" component={Map} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route exact path="/" component={Home} />
-          <Route path="/regForm" component={RegPage} />
+          <Route path="/regForm" component={RegPage} /> */}
+          <Route exact path="/" component={Profile} />
         </Switch>
       </main>
     );

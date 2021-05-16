@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import { connect } from 'react-redux';
-import { logOut } from '../../store/actions/actions';
+import { logOut } from '../../store/actions/auth';
 import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
