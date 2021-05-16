@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import PropTypes from 'prop-types';
 import './App.css';
+import { store } from './store/store';
 
 class App extends React.Component {
   render() {
@@ -17,8 +18,8 @@ class App extends React.Component {
         {(this.props.isLoggedIn) ?
           (<>
             <Switch>
-              <PrivateRoute path="/map" component={Map} />
-              <PrivateRoute path="/profile" component={Profile} />
+              <PrivateRoute store={store} path="/map" component={Map} />
+              {/* <PrivateRoute path="/profile" component={Profile} /> */}
             </Switch>
           </>) : (
             <Switch>
@@ -36,8 +37,8 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-// const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
-// const mapDispatchToProps = () => ({})
+const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
+const mapDispatchToProps = () => ({})
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);
