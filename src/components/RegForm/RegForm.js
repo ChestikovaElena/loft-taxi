@@ -4,23 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
 
-const StyledButton = withStyles({
-  root: {
-    backgroundColor: '#FDBF5A',
-    borderRadius: '70px',
-    border: 0,
-    color: '#000',
-    fontSize: '25px',
-    padding: '15px 60px',
-    '&:hover': {
-      backgroundColor: '#FFA842',
-    }
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
-})(Button);
-
 const CssTextField = withStyles({
   root: {
     '& label.Mui-focused': {

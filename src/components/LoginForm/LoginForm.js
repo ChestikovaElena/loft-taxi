@@ -125,6 +125,6 @@ class LoginForm extends React.Component {
 
 const mapStateToProps = () => ({});
 const mapDispatchToProps = {authenticate};
-const LoginFormWithConnect = connect( mapStateToProps, mapDispatchToProps)(LoginForm);
+const LoginFormWithConnect = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
 
 export { LoginFormWithConnect };

@@ -9,25 +9,17 @@ import { Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 import PropTypes from 'prop-types';
 import './App.css';
-import { store } from './store/store';
 
 class App extends React.Component {
   render() {
     return (
       <main data-testid="container">
-        {(this.props.isLoggedIn) ?
-          (<>
-            <Switch>
-              <PrivateRoute store={store} path="/map" component={Map} />
-              {/* <PrivateRoute path="/profile" component={Profile} /> */}
-            </Switch>
-          </>) : (
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/regForm" component={RegPage} />
-            </Switch>
-          )
-        }
+        <Switch>
+          <PrivateRoute path="/map" component={Map} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route exact path="/" component={Home} />
+          <Route path="/regForm" component={RegPage} />
+        </Switch>
       </main>
     );
   };

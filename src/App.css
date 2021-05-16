@@ -1,4 +1,5 @@
 @import url('./styles/layout.css');
+@import url('./styles/buttons.css');
 @import url('./pages/Home/home.css');
 @import url('./components/Header/header.css');
 @import url('./components/LoginForm/form.css');

@@ -5,7 +5,6 @@ export const authMiddleware = (store) => (next) => async (action) => {
   if (action.type === AUTHENTICATE) {
     const {email, password} = action.payload;
     const data = await serverLogIn(email, password);
-    console.log(data);
     if(data.success){
       store.dispatch(logIn(data.token))
     } else {
