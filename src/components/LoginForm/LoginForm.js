@@ -39,10 +39,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 class LoginForm extends React.Component {
-  static propTypes = {
-    logIn: PropTypes.func
-  }
-
   state = {email: '', password: '', errorTextEmail: ''};
 
   handleChange = event => {
@@ -54,8 +50,8 @@ class LoginForm extends React.Component {
   };
 
   validateEmail = email => {
-    const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    return re.test(String(email).toLowerCase);
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
   }
 
   authenticate = (event) => {
@@ -69,7 +65,7 @@ class LoginForm extends React.Component {
   render() {
     const { email, password, errorTextEmail } = this.state;
     return (
-      <div className='form__wrapper'>
+      <div className='form__wrapper' data-testid="loginForm">
         <h2 className='form__title'>Войти</h2>
         <form className='form__form'>
           <div className='form__row'>

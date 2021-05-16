@@ -29,8 +29,7 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({isLoggedIn: state.auth.isLoggedIn});
+const mapStateToProps = ({auth}) => ({ isLoggedIn: auth.isLoggedIn, error: auth.error });
 const mapDispatchToProps = () => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default connect((state) => ({ isLoggedIn: state.auth.isLoggedIn }))(App);

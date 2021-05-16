@@ -1,8 +1,8 @@
 import { LOG_IN, LOG_OUT, LOG_IN_ERROR } from "../actions/actions";
 
 const initialState = {
-  isLoggedIn: false,
-  token: '',
+  isLoggedIn: !!localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   error: '',
 };
 
