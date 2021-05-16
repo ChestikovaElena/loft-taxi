@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { authenticate } from '../../store/actions/auth';
+import validateEmail from './utils';
 
 const StyledButton = withStyles({
   root: {
@@ -45,18 +45,9 @@ class LoginForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleChangeEmail = event => {
-    this.setState({ email: event.target.value });
-  };
-
-  validateEmail = email => {
-    const re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
-
   authenticate = (event) => {
     event.preventDefault();
-    if (!this.validateEmail(this.state.email)) {
+    if (!validateEmail(this.state.email)) {
       this.setState({ errorTextEmail: 'Некорректный email' });
     }
     this.props.authenticate(this.state.email, this.state.password);
@@ -64,6 +55,7 @@ class LoginForm extends React.Component {
 
   render() {
     const { email, password, errorTextEmail } = this.state;
+
     return (
       <div className='form__wrapper' data-testid="loginForm">
         <h2 className='form__title'>Войти</h2>
@@ -81,7 +73,7 @@ class LoginForm extends React.Component {
               value = {email}
               error= {errorTextEmail !== ''}
               helperText={errorTextEmail}
-              onChange={this.handleChangeEmail}
+              onChange={this.handleChange}
             />
           </div>
           <div className="form__row row__after">
@@ -119,8 +111,7 @@ class LoginForm extends React.Component {
   }
 }
 
-const mapStateToProps = () => ({});
 const mapDispatchToProps = {authenticate};
-const LoginFormWithConnect = connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+const LoginFormWithConnect = connect(null, mapDispatchToProps)(LoginForm);
 
 export { LoginFormWithConnect };

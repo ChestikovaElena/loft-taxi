@@ -2,12 +2,17 @@ import React from 'react';
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import LoginFormWithConnect from '../../components/LoginForm';
-import PropTypes from 'prop-types';
+import RegForm from '../../components/RegForm';
 
 class Home extends React.Component {
-  static propTypes = {
-    page: PropTypes.string
+  state = {
+    mode: 'login'
   };
+
+  handleModeChange = () => {
+    const mode = this.state.mode === 'login' ? 'registration' : 'login';
+    this.setState({ mode });
+  }
 
   render() {
     return (
@@ -19,7 +24,10 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="right-column">
-          <LoginFormWithConnect />
+          {this.state.mode === 'login' ?
+            <LoginFormWithConnect changeAuthMode={this.handleModeChange}/> :
+            <RegForm changeAuthMode={this.handleModeChange}/>}
+          
         </div>
       </div>
     );

@@ -11,8 +11,7 @@ export class Profile extends React.Component {
         <Header />
         <Map />
         <div className='overlay'>
-          {/* <ProfileWarning navigateTo={this.props.navigateTo}/> */}
-          <ProfileForm navigateTo={this.props.navigateTo}/>
+          <ProfileForm />
         </div>
       </>
     )

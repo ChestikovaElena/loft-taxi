@@ -42,14 +42,6 @@ const CssTextField = withStyles({
 })(TextField);
 
 class ProfileComponent extends React.Component {
-  // static propTypes = {
-  //   navigateTo: PropTypes.func,
-  //   logIn: PropTypes.func
-  // }
-  // useEffect(() => {
-  //   getCard(token);
-  // }, [(token)]);
-  
   componentDidMount() {
     this.props.getCard(this.props.token);
   };
@@ -79,7 +71,6 @@ class ProfileComponent extends React.Component {
           <div className="form__block">
             <div className='form__column'>
               <div className='form__row'>
-              {console.log(this.props.cardData)}
                 <CssTextField
                   required
                   className='form__input'
@@ -104,7 +95,7 @@ class ProfileComponent extends React.Component {
                   label="Номер карты"
                   name="card"
                   data-testid="cardInput"
-                  placeholder="*************"
+                  placeholder="5545230034324521"
                   value = {this.props.cardData.cardNumber}
                   error= {this.state.errorTextCard !== ''}
                   helperText={this.state.errorTextCard}

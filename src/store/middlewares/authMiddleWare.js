@@ -1,5 +1,5 @@
 import { AUTHENTICATE, logIn, logInError } from "../actions/auth";
-import {serverLogIn} from '../api/LogIn';
+import {serverLogIn} from '../api/auth';
 
 export const authMiddleware = (store) => (next) => async (action) => {
   if (action.type === AUTHENTICATE) {

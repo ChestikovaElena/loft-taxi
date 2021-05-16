@@ -2,13 +2,9 @@ import React from 'react';
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import RegForm from '../../components/RegForm';
-import PropTypes from 'prop-types';
 
 class RegPage extends React.Component {
-  static propTypes = {
-    page: PropTypes.string
-  };
-
+  
   render() {
     return (
       <div className='container'>

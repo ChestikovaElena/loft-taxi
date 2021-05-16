@@ -1,5 +1,5 @@
 import { GET_CARD, getCardSuccess, getCardFailure } from "../actions/card";
-import {getCardDataFromServer} from '../api/GetCard';
+import {getCardDataFromServer} from '../api/getCard';
 
 export const cardMiddleware = (store) => (next) => async (action) => {
   if (action.type === GET_CARD) {
