@@ -18,7 +18,22 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-const RegForm = () => {
+const StyledLink = withStyles({
+  root: {
+    backgroundColor: 'transparent',
+    border: 0,
+    color: '#828282',
+    fontSize: '16px',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    }
+  },
+  label: {
+    textTransform: 'none',
+  },
+})(Button);
+
+const RegForm = (props) => {
   return (
     <div className='form__wrapper'>
       <h2 className='form__title'>Регистрация</h2>
@@ -61,7 +76,12 @@ const RegForm = () => {
         </div>
       </form>
       <div className='form__reg'>
-        <div className='form__reg-text'>Уже зарегистрированы?</div>
+        <StyledLink
+          onClick={props.changeAuthMode}
+          className='form__reg-text'
+        >
+          Уже зарегистрированы?
+        </StyledLink>
         <Link to="/" className='form__reg-button'>Войти</Link>
       </div>
     </div>

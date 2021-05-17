@@ -51,10 +51,12 @@
   margin-top: 30px;
   display: flex;
   color: #828282;
+  align-items: center;
 }
 
 .form__reg-text {
   margin-right: 5px;
+  font-size: 16px;
 }
 
 .form__reg-button {

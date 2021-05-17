@@ -8,7 +8,6 @@ import HeaderWithConnect from './components/Header';
 import Map from './components/Map';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
-import RegPage from './pages/RegPage';
 import './App.css';
 
 class App extends React.Component {
@@ -25,7 +24,6 @@ class App extends React.Component {
           />
           <PrivateRoute path="/map" component={Map} />
           <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/regForm" component={RegPage} />
         </Switch>
       </main>
     );

@@ -1,7 +1,7 @@
 import { GET_CARD, GET_CARD_SUCCESS, GET_CARD_FAILURE } from "../actions/card";
 
 const initialState = {
-  isLoadding: true,
+  isLoadding: false,
   error: '',
   data: {id: '', cardNumber: '', expiryDate: '', cardName: '', cvc: ''},
 };

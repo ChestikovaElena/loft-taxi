@@ -27,7 +27,6 @@ class Home extends React.Component {
           {this.state.mode === 'login' ?
             <LoginFormWithConnect changeAuthMode={this.handleModeChange}/> :
             <RegForm changeAuthMode={this.handleModeChange}/>}
-          
         </div>
       </div>
     );

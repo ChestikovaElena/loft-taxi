@@ -23,18 +23,37 @@ header .header__content {
   margin-right: 15px;
 }
 
-header .header__menu {
+.header__menu {
   display: flex;
   align-items: center;
 }
 
-header .header__menu button {
+.header__menu button {
   margin-right: 10px;
   color: #fff;
   font-size: 20px;
   text-transform: capitalize;
 }
 
+.menu__list {
+  display: flex;
+  align-items: center;
+}
+
+.menu__item {
+  margin-right: 20px;
+}
+
+.menu__item:last-child {
+  margin-right: 0;
+}
+
 header .header__menu button:last-child {
   margin-right: 0;
+}
+
+.header__button {
+  color: #fff;
+  font-size: 21px;
+  text-decoration: none;
 }

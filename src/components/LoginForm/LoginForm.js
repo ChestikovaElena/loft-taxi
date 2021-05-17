@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
 import { authenticate } from '../../store/actions/auth';
 import validateEmail from './utils';
 
@@ -17,6 +16,21 @@ const StyledButton = withStyles({
     padding: '15px 140px',
     '&:hover': {
       backgroundColor: '#FFA842',
+    }
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
+const StyledLink = withStyles({
+  root: {
+    backgroundColor: 'transparent',
+    border: 0,
+    color: '#FDBF5A',
+    fontSize: '16px',
+    '&:hover': {
+      backgroundColor: 'transparent',
     }
   },
   label: {
@@ -104,7 +118,12 @@ class LoginForm extends React.Component {
         </form>
         <div className='form__reg'>
           <div className='form__reg-text'>Новый пользователь?</div>
-          <Link to="/regForm"  className='form__reg-button'>Регистрация</Link>
+          <StyledLink
+            onClick={this.props.changeAuthMode}
+            className='form__reg-button'
+          >
+            Регистрация
+          </StyledLink>
         </div>
       </div>
     );
