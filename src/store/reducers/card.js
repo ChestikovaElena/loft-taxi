@@ -1,7 +1,13 @@
-import { GET_CARD, GET_CARD_SUCCESS, GET_CARD_FAILURE } from "../actions/card";
+import {
+  GET_CARD,
+  GET_CARD_SUCCESS,
+  GET_CARD_FAILURE,
+  UPDATE_CARD,
+  UPDATE_CARD_ERROR
+} from "../actions/card";
 
 const initialState = {
-  isLoadding: false,
+  isLoaddingCard: false,
   error: '',
   data: {id: '', cardNumber: '', expiryDate: '', cardName: '', cvc: ''},
 };
@@ -9,13 +15,19 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_CARD: {
-      return { ...state, isLoadding: true };
+      return { ...state, isLoaddingCard: true };
     }
     case GET_CARD_SUCCESS: {
-      return { ...state, isLoadding: false, data: action.payload }
+      return { ...state, isLoaddingCard: true, data: action.payload }
     }
     case GET_CARD_FAILURE: {
-      return { ...state, isLoadding: false, error: action.payload }
+      return { ...state, isLoaddingCard: false, error: action.payload }
+    }
+    case UPDATE_CARD: {
+      return { ...state, isLoaddingCard: true }
+    }
+    case UPDATE_CARD_ERROR: {
+      return { ...state, isLoaddingCard: false, error: action.payload }
     }
     default:
       return state;

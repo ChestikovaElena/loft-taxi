@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
-import {getCard} from '../../store/actions//card';
+import {getCard, update} from '../../store/actions/card';
 
 import logo from '../../images/icons/logo.png';
 import chip from '../../images/icons/chip.png';
@@ -46,6 +46,10 @@ class ProfileComponent extends React.Component {
   };
 
   state = {
+    cardNumber: '',
+    expiryDate: '',
+    cardName: '',
+    cvc: '',
     errorTextName: '',
     errorTextCard: '',
     errorTextDate: '',
@@ -55,6 +59,17 @@ class ProfileComponent extends React.Component {
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  updateProfile = event => {
+    event.preventDefault();
+    this.props.update(
+      this.state.cardNumber,
+      this.state.expiryDate,
+      this.state.cardName,
+      this.state.cvc,
+      this.props.token
+    )
+  }
 
   render() {
     return (
@@ -153,7 +168,7 @@ class ProfileComponent extends React.Component {
                 className='button form__button'
                 data-testid="submitButton"
                 color="primary"
-                onClick={this.goToMap}
+                onClick={this.updateProfile}
               >
                 Сохранить
               </StyledButton>
@@ -167,10 +182,10 @@ class ProfileComponent extends React.Component {
 const mapStateToProps = ({ card, auth }) => ({
   token: auth.token,
   cardData: card.data,
-  isLoadding: card.isLoadding,
+  isLoaddingCard: card.isLoaddingCard,
   error: card.error,
 })
 
-const mapDispatchToProps = {getCard};
+const mapDispatchToProps = {getCard, update};
 
 export const ProfileForm = connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);

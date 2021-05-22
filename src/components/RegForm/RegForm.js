@@ -2,7 +2,8 @@ import React from 'react';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { registrate } from '../../store/actions/registration';
 
 const CssTextField = withStyles({
   root: {
@@ -22,7 +23,7 @@ const StyledLink = withStyles({
   root: {
     backgroundColor: 'transparent',
     border: 0,
-    color: '#828282',
+    color: '#FDBF5A',
     fontSize: '16px',
     '&:hover': {
       backgroundColor: 'transparent',
@@ -72,20 +73,31 @@ const RegForm = (props) => {
           />
         </div>
         <div className="form__row">
-          <Link to="/" className='button form__button'>Зарегистрироваться</Link>
+          <button
+            className='button form__button'
+            onClick={props.registrate}
+          >
+            Зарегистрироваться
+          </button>
         </div>
       </form>
       <div className='form__reg'>
-        <StyledLink
-          onClick={props.changeAuthMode}
-          className='form__reg-text'
-        >
+        <span className='form__reg-text'>
           Уже зарегистрированы?
+        </span>
+        <StyledLink 
+          onClick={props.changeAuthMode}
+          className='form__reg-button'
+        >
+          Войти
         </StyledLink>
-        <Link to="/" className='form__reg-button'>Войти</Link>
       </div>
     </div>
   );
 }
 
-export { RegForm }
+const RegFormWithConnect = connect(
+  null,
+  { registrate }
+)(RegForm);
+export { RegFormWithConnect };

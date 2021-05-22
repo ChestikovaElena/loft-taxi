@@ -5,21 +5,22 @@ describe("card", () => {
   describe("#GET_CARD", () => {
     it('returns isLoadding true', () => {
       expect(card({}, getCard())).toEqual({
-        "isLoadding": true});
+        "isLoaddingCard": true});
     });
   });
 
   describe("#GET_CARD_SUCCESS", () => {
     it('returns isLoadding false', () => {
       expect(card({}, getCardSuccess())).toEqual({
-        "isLoadding": false});
+        "isLoaddingCard": false});
     });
   });
 
   describe("#GET_CARDS_FAILURE", () => {
     it('returns isLoggedIn false', () => {
       expect(card({}, getCardFailure())).toEqual({
-        "isLoadding": false,
+        "error": undefined,
+        "isLoaddingCard": false,
         "isLoggedIn": false});
     });
   });

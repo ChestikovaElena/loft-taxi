@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import LoginFormWithConnect from '../../components/LoginForm';
-import RegForm from '../../components/RegForm';
+import RegFormWithConnect from '../../components/RegForm';
 
 class Home extends React.Component {
   state = {
@@ -26,7 +26,7 @@ class Home extends React.Component {
         <div className="right-column">
           {this.state.mode === 'login' ?
             <LoginFormWithConnect changeAuthMode={this.handleModeChange}/> :
-            <RegForm changeAuthMode={this.handleModeChange}/>}
+            <RegFormWithConnect changeAuthMode={this.handleModeChange}/>}
         </div>
       </div>
     );

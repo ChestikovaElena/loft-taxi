@@ -1,2 +1,2 @@
-import { RegForm } from './RegForm.js'
-export default RegForm
+import { RegFormWithConnect } from './RegForm.js'
+export default RegFormWithConnect

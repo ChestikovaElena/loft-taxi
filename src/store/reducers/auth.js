@@ -3,6 +3,7 @@ import { LOG_IN, LOG_OUT, LOG_IN_ERROR } from "../actions/auth";
 const initialState = {
   isLoggedIn: !!localStorage.getItem('token'),
   token: localStorage.getItem('token'),
+  email: '',
   error: '',
 };
 

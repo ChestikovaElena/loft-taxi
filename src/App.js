@@ -34,6 +34,9 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-const mapStateToProps = ({auth}) => ({ isLoggedIn: auth.isLoggedIn, error: auth.error });
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.auth.isLoggedIn,
+  error: state.auth.error
+});
 
 export default connect(mapStateToProps)(App);

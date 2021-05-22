@@ -12,9 +12,10 @@ it('renders correctly', () => {
     const { getByTestId } = render(<Map />);
     expect(mapboxgl.Map).toHaveBeenCalledWith({
       style: 'mapbox://styles/mapbox/basic-v9',
+      zoom: 13,
+      attributionControl: false,
       center: [56.25, 58.00],
       container: getByTestId('map'),
-      zoom: 13,
     });
   });
 });
