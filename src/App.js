@@ -5,7 +5,7 @@ import { PrivateRoute } from './PrivateRoute';
 import PropTypes from 'prop-types';
 
 import HeaderWithConnect from './components/Header';
-import Map from './components/Map';
+import MapPage from './pages/MapPage';
 import Profile from './pages/Profile';
 import Home from './pages/Home';
 import './App.css';
@@ -22,7 +22,7 @@ class App extends React.Component {
             render={() => this.props.isLoggedIn
               ? <Redirect to="/map" /> : <Home />}
           />
-          <PrivateRoute path="/map" component={Map} />
+          <PrivateRoute path="/map" component={MapPage} />
           <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </main>

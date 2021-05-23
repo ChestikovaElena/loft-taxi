@@ -46,6 +46,7 @@ class ProfileComponent extends React.Component {
   componentDidMount() {
     this.props.getCard(this.props.token);
   };
+  
   state = {
     cardNumber: this.props.cardData.cardNumber,
     expiryDate: this.props.cardData.expiryDate,
