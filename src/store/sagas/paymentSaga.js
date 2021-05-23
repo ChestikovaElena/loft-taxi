@@ -5,8 +5,8 @@ import {
   GET_CARD,
   getCardSuccess,
   getCardFailure,
-  UPDATE,
-  updateCard,
+  UPDATE_CARD,
+  updateCardSuccess,
   updateCardError
 } from "../actions/card";
 
@@ -14,7 +14,6 @@ export function* loadProfile(action) {
   const token = action.payload;
   const data = yield call(getCardDataFromServer, token);
   if (data.id) {
-    localStorage.setItem('token', data.token);
     yield put(getCardSuccess(data));
   } else {
     yield put(getCardFailure(data.error));
@@ -29,7 +28,7 @@ export function* updateProfile(action) {
     cardName, cvc, token
   );
   if (data.success) {
-    yield put(updateCard());
+    yield put(updateCardSuccess());
   } else {
     yield put(updateCardError(data.error));
   }
@@ -40,5 +39,5 @@ export function* getCardWatcher() {
 }
 
 export function* saveCardWatcher() {
-  yield takeEvery(UPDATE, updateProfile);
+  yield takeEvery(UPDATE_CARD, updateProfile);
 }

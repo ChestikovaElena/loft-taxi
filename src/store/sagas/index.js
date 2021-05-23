@@ -3,7 +3,7 @@ import { authWatcher } from './authorizationSaga';
 import { regWatcher } from './registrationSaga';
 import { getCardWatcher, saveCardWatcher } from './paymentSaga';
 
-export function* rootSaga() {
+export default function* rootSaga() {
   yield all([
     fork(authWatcher),
     fork(regWatcher),

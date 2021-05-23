@@ -3,11 +3,13 @@ import {connect} from 'react-redux';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
-import {getCard, update} from '../../store/actions/card';
+import {getCard, updateCard} from '../../store/actions/card';
 
 import logo from '../../images/icons/logo.png';
 import chip from '../../images/icons/chip.png';
 import masterCard from '../../images/icons/masterCard.png';
+
+import ProfileWarning from '../ProfileWarning';
 
 const StyledButton = withStyles({
   root: {
@@ -44,12 +46,11 @@ class ProfileComponent extends React.Component {
   componentDidMount() {
     this.props.getCard(this.props.token);
   };
-
   state = {
-    cardNumber: '',
-    expiryDate: '',
-    cardName: '',
-    cvc: '',
+    cardNumber: this.props.cardData.cardNumber,
+    expiryDate: this.props.cardData.expiryDate,
+    cardName: this.props.cardData.cardName,
+    cvc: this.props.cardData.cvc,
     errorTextName: '',
     errorTextCard: '',
     errorTextDate: '',
@@ -62,7 +63,7 @@ class ProfileComponent extends React.Component {
 
   updateProfile = event => {
     event.preventDefault();
-    this.props.update(
+    this.props.updateCard(
       this.state.cardNumber,
       this.state.expiryDate,
       this.state.cardName,
@@ -73,108 +74,120 @@ class ProfileComponent extends React.Component {
 
   render() {
     return (
-      <div className='form__wrapper form__wrapper--profile'>
-        <h2 className='form__title form__title--profile'>Профиль</h2>
-        <div className='form__subtitle'>Введите платежные данные</div>
-        <form className='form__form'>
-          <div className="form__block">
-            <div className='form__column'>
-              <div className='form__row'>
-                <CssTextField
-                  required
-                  className='form__input'
-                  pattern='[A-Za-zА-Яа-яЁё]'
-                  id="name"
-                  label="Имя владельца"
-                  type="text"
-                  name="name"
-                  data-testid="nameInput"
-                  placeholder="Loft"
-                  value = {this.props.cardData.cardName}
-                  error= {this.state.errorTextName !== ''}
-                  helperText={this.state.errorTextName}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="form__row">
-                <CssTextField
-                  required
-                  className='form__input'
-                  id="card"
-                  label="Номер карты"
-                  name="card"
-                  data-testid="cardInput"
-                  placeholder="5545230034324521"
-                  value = {this.props.cardData.cardNumber}
-                  error= {this.state.errorTextCard !== ''}
-                  helperText={this.state.errorTextCard}
-                  onChange={this.handleChange}
-                />
-              </div>
-              <div className="form__row form__row--profile">
-                <div className="row__input row__input--small">
+      <>
+      {this.props.isLoaddingCard
+        ?
+        <div className='form__wrapper form__wrapper--profile'>Loading...</div>
+        :
+        this.props.isUpdatingCard
+        ?
+        <ProfileWarning />
+        :
+        <div className='form__wrapper form__wrapper--profile'>
+          <h2 className='form__title form__title--profile'>Профиль</h2>
+          <div className='form__subtitle'>Введите платежные данные</div>
+          <form className='form__form'>
+            <div className="form__block">
+              <div className='form__column'>
+                <div className='form__row'>
                   <CssTextField
                     required
-                    className='form__input form__input--small'
-                    id="date"
-                    label="MM/YY"
-                    name="date"
-                    data-testid="dateInput"
-                    placeholder="05/08"
-                    value = {this.props.cardData.expiryDate}
-                    error= {this.state.errorTextDate !== ''}
-                    helperText={this.state.errorTextDate}
+                    className='form__input'
+                    pattern='[A-Za-zА-Яа-яЁё]'
+                    id="name"
+                    label="Имя владельца"
+                    type="text"
+                    name="cardName"
+                    data-testid="nameInput"
+                    placeholder="Loft"
+                    value = {this.state.cardName}
+                    error= {this.state.errorTextName !== ''}
+                    helperText={this.state.errorTextName}
                     onChange={this.handleChange}
                   />
                 </div>
-                <div className="row__input row__input--small">
+                <div className="form__row">
                   <CssTextField
                     required
-                    className='form__input form__input--small'
-                    id="cvc"
-                    label="CVC"
-                    name="cvc"
-                    data-testid="cvcInput"
-                    placeholder="667"
-                    value = {this.props.cardData.cvc}
-                    error= {this.state.errorTextCvc !== ''}
-                    helperText={this.state.errorTextCvc}
+                    className='form__input'
+                    id="card"
+                    label="Номер карты"
+                    name="cardNumber"
+                    data-testid="cardInput"
+                    placeholder="5545230034324521"
+                    value = {this.state.cardNumber}
+                    error= {this.state.errorTextCard !== ''}
+                    helperText={this.state.errorTextCard}
                     onChange={this.handleChange}
                   />
                 </div>
+                <div className="form__row form__row--profile">
+                  <div className="row__input row__input--small">
+                    <CssTextField
+                      required
+                      className='form__input form__input--small'
+                      id="date"
+                      label="MM/YY"
+                      name="expiryDate"
+                      data-testid="dateInput"
+                      placeholder="05/08"
+                      value = {this.state.expiryDate}
+                      error= {this.state.errorTextDate !== ''}
+                      helperText={this.state.errorTextDate}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div className="row__input row__input--small">
+                    <CssTextField
+                      required
+                      className='form__input form__input--small'
+                      id="cvc"
+                      label="CVC"
+                      name="cvc"
+                      data-testid="cvcInput"
+                      placeholder="667"
+                      value = {this.state.cvc}
+                      error= {this.state.errorTextCvc !== ''}
+                      helperText={this.state.errorTextCvc}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className='form__column'>
+                <div className='card'>
+                <div className='card__wrapper'>
+                  <div className='card__row'>
+                    <img src={logo} alt="logo" className="logo-image logo-image--card"/>
+                    <span className="card__date">{this.state.expiryDate}</span>
+                  </div>
+                  <div className='card__row'>
+                    <span className="card__number">{this.state.cardNumber}</span>
+                  </div>
+                  <div className='card__row'>
+                    <img src={chip} alt="chip" className="card__chip"/>
+                    <img src={masterCard} alt="masterCard" className="card__masterCard"/>
+                  </div>
+                </div>
+                </div>
               </div>
             </div>
-            <div className='form__column'>
-              <div className='card'>
-              <div className='card__wrapper'>
-                <div className='card__row'>
-                  <img src={logo} alt="logo" className="logo-image logo-image--card"/>
-                  <span className="card__date">05/08</span>
-                </div>
-                <div className='card__row'>
-                  <span className="card__number">5545230034324521</span>
-                </div>
-                <div className='card__row'>
-                  <img src={chip} alt="chip" className="card__chip"/>
-                  <img src={masterCard} alt="masterCard" className="card__masterCard"/>
-                </div>
+            <div className="form__block form__block--button">
+                <StyledButton
+                  type="submit"
+                  className='button form__button'
+                  data-testid="submitButton"
+                  color="primary"
+                  onClick={this.updateProfile}
+                >
+                  Сохранить
+                </StyledButton>
               </div>
-              </div>
-            </div>
-          </div>
-          <div className="form__block form__block--button">
-              <StyledButton
-                type="submit"
-                className='button form__button'
-                data-testid="submitButton"
-                color="primary"
-                onClick={this.updateProfile}
-              >
-                Сохранить
-              </StyledButton>
-            </div>
-        </form>
+          </form>
         </div>
+       
+      };
+      </>
     );
   }
 }
@@ -184,8 +197,9 @@ const mapStateToProps = ({ card, auth }) => ({
   cardData: card.data,
   isLoaddingCard: card.isLoaddingCard,
   error: card.error,
+  isUpdatingCard: card.isUpdatingCard
 })
 
-const mapDispatchToProps = {getCard, update};
+const mapDispatchToProps = {getCard, updateCard};
 
 export const ProfileForm = connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);

@@ -13,3 +13,8 @@
 .button:hover {
   background-color: #FFA842;
 }
+
+.form__button--warning {
+  font-size: 21px;
+  padding: 20px 90px;
+}
