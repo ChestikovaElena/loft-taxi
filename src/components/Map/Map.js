@@ -1,25 +1,33 @@
 import React from 'react';
-import mapboxgl from 'mapbox-gl';
+import {connect} from 'react-redux';
+import * as mapApi from './api';
 
-class Map extends React.Component{
-  map = null;
+// const Map = () => {
+  class MapComponent extends React.Component{
+  // const [map, setMap] = useState(null);
+  state = { map: null };
   mapContainer = React.createRef();
 
   componentDidMount() {
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoiZWxlbmFjaCIsImEiOiJja29jdXV4ZHIxcTU2Mnlxa3l2enc0cTdhIn0.f4jSaqU4WJP6C9ILIK3rkQ';
-
-    this.map = new mapboxgl.Map({
-      container: this.mapContainer.current,
-      style: 'mapbox://styles/mapbox/basic-v9',
-      center: [56.25, 58.00],
-      zoom: 13,
-      attributionControl: false,
+    const mapGL = mapApi.createMap(this.mapContainer.current);
+    mapGL.on('load', () => {
+      this.setState({ map: mapGL });
     });
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      console.log(!!this.state.map);
+      console.log(!!this.props.route);
+      console.log(this.state.map && this.props.route);
+      if (this.state.map && this.props.route) {
+      mapApi.drawRoute(this.state.map, this.props.route);
+    }
+    }
   }
 
   componentWillUnmount() {
-    this.map.remove();
+    this.setState({ map: null });
   }
 
   render() {
@@ -29,6 +37,12 @@ class Map extends React.Component{
       </div>
     );
   };
+
 }
 
-export { Map };
+const mapStateToProps = ({ route }) => ({
+  isLoaddingRoute: route.isLoaddingRoute,
+  route: route.route,
+});
+
+export const Map = connect(mapStateToProps)(MapComponent);

@@ -9,11 +9,12 @@ import {
 export function* getRouteSaga() {
   const data = yield call(getRoute);
 
-  const mockData = {
-    0: [30.316273, 59.940578],
-    1: [30.316589, 59.940495],
-    2: [30.322144, 59.942886]
-  };
+  const mockData = [
+    [30.316273, 59.940578],
+    [30.316589, 59.940495],
+    [30.322144, 59.942886],
+    [30.322148, 59.942891]
+  ];
   if (!!mockData) {
     yield put(getRouteSuccess(mockData));
   } else {

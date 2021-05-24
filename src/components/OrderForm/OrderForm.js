@@ -62,8 +62,8 @@ export class OrderComponent extends React.Component {
       this.props.getRoute(
         this.state.fromAddress,
         this.state.toAddress
-      )
-    }
+      );
+    };
   }
 
   goToOrder = event => {
