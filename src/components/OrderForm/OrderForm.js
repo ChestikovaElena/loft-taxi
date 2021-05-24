@@ -58,10 +58,12 @@ export class OrderComponent extends React.Component {
 
   getRoutes = event => {
     event.preventDefault();
-    this.props.getRoute(
-      this.state.fromAddress,
-      this.state.toAddress
-    )
+    if (this.state.fromAddress && this.state.toAddress) {
+      this.props.getRoute(
+        this.state.fromAddress,
+        this.state.toAddress
+      )
+    }
   }
 
   goToOrder = event => {
