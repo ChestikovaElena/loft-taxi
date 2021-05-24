@@ -28,12 +28,12 @@ describe('getCardWatcher', () => {
 describe('loadProfile', () => {
 
   it('should call api and dispatch GET_CARD_SUCCESS action', async () => {
-    const dummySuccessResponse = {
-      id: 'id',
-      cardNumber: 'cardNumber',
-      expiryDate: 'expiryDate',
-      cardName: 'cardName',
-      cvc: 'cvc'};
+    const id = 'id';
+    const  cardNumber = 'cardNumber',
+    const  expiryDate = 'expiryDate',
+    const  cardName = 'cardName',
+    const  cvc = 'cvc';
+    const dummySuccessResponse = {id, cardNumber, expiryDate, cardName, cvc};
 
     const requestGetCard = jest
       .spyOn(cardApi, 'getCardDataFromServer')
