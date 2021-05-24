@@ -17,12 +17,9 @@ import * as mapApi from './api';
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      console.log(!!this.state.map);
-      console.log(!!this.props.route);
-      console.log(this.state.map && this.props.route);
       if (this.state.map && this.props.route) {
-      mapApi.drawRoute(this.state.map, this.props.route);
-    }
+        mapApi.drawRoute(this.state.map, this.props.route);
+      }
     }
   }
 

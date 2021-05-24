@@ -48,6 +48,7 @@ class ProfileComponent extends React.Component {
   };
   
   state = {
+    id: this.props.cardData.id,
     cardNumber: this.props.cardData.cardNumber,
     expiryDate: this.props.cardData.expiryDate,
     cardName: this.props.cardData.cardName,
@@ -57,6 +58,18 @@ class ProfileComponent extends React.Component {
     errorTextDate: '',
     errorTextCvc: ''
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({ 
+        id: this.props.cardData.id,
+        cardNumber: this.props.cardData.cardNumber,
+        expiryDate: this.props.cardData.expiryDate,
+        cardName: this.props.cardData.cardName,
+        cvc: this.props.cardData.cvc,
+      })
+    }
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });

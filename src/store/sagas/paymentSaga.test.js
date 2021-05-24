@@ -50,7 +50,7 @@ describe('loadProfile', () => {
     );
 
     expect(requestGetCard).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([getCardSuccess(id: 'id', cardNumber, expiryDate, cardName, cvc)]);
+    expect(dispatched).toEqual([getCardSuccess(id, cardNumber, expiryDate, cardName, cvc)]);
     requestGetCard.mockClear();
   });
 

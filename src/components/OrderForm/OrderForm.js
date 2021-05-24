@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { getAddresses } from '../../store/actions/addresses';
 import { getRoute } from '../../store/actions/route';
+import { getCard } from '../../store/actions/card';
 
 const CssInputLabel = withStyles({
   root: {
@@ -71,10 +72,20 @@ export class OrderComponent extends React.Component {
   }
 
   componentDidMount() {
+    this.props.getCard(this.props.token);
     this.props.getAddresses();
-    if (this.props.isLoaddingAddresses) {
+    if (!!this.props.addresses) {
       this.setState({ fromList: this.props.addresses })
       this.setState({ toList: this.props.addresses })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({ 
+        fromList: this.props.addresses,
+        toList: this.props.addresses,
+      })
     }
   }
 
@@ -166,7 +177,8 @@ export class OrderComponent extends React.Component {
   }
 }
 
-const mapStateToProps = ({ card, addresses, route }) => ({
+const mapStateToProps = ({ auth, card, addresses, route }) => ({
+  token: auth.token,
   isProfileComplete: !!card.data.id,
   isLoaddingAddresses: addresses.isLoaddingAddresses,
   errorAddresses: addresses.error,
@@ -176,6 +188,6 @@ const mapStateToProps = ({ card, addresses, route }) => ({
   errorRoute: route.error,
 });
 
-const mapDispatchToProps = {getAddresses, getRoute};
+const mapDispatchToProps = {getCard, getAddresses, getRoute};
 
 export const OrderForm = connect(mapStateToProps, mapDispatchToProps)(OrderComponent);
