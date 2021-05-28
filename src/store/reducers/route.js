@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
       return { ...state, isLoaddingRoute: true, route: action.payload }
     }
     case GET_ROUTE_FAILURE: {
-      return { ...state, isLoggedIn: false }
+      return { ...state, isLoaddingRoute: false }
     }
     default:
       return state;

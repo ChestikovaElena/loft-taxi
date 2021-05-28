@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_IN_ERROR } from "./actions";
+import { SIGN_IN, SIGN_IN_ERROR } from "../actions/registration";
 
 const initialState = {
   isRegistriedIn: false,

@@ -22,7 +22,7 @@ describe("getCard", () => {
     });
   });
 
-  describe("#GET_CARDS_FAILURE", () => {
+  describe("#GET_CARD_FAILURE", () => {
     it('returns isLoaddingCard false', () => {
       expect(card({}, getCardFailure())).toEqual({
         "isLoaddingCard": false,

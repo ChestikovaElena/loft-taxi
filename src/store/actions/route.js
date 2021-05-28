@@ -5,7 +5,7 @@ export const GET_ROUTE_FAILURE = "GET_ROUTE_FAILURE";
 export const getRouteSuccess = (route) => ({
   type: GET_ROUTE_SUCCESS, payload: route
 });
-export const getRouteFailure = ([]) => ({
+export const getRouteFailure = () => ({
   type: GET_ROUTE_FAILURE, payload: []
 });
 
