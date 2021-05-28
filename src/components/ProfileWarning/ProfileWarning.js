@@ -5,7 +5,7 @@ class ProfileWarning extends React.Component {
   render() {
     return (
       <div className='form__wrapper form__wrapper--warning'>
-        <h2 className='form__title form__title--warning'>Профиль</h2>
+        <h2 className='form__title form__title--warning' data-testid="header">Профиль</h2>
         <div className='form__subtitle form__subtitle--warning'>Платёжные данные обновлены. Теперь вы можете заказывать такси.</div>
         <Link
           to="/map" 

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
@@ -34,10 +36,10 @@ const StyledLink = withStyles({
   },
 })(Button);
 
-const RegForm = (props) => {
+export const RegForm = (registrate, changeAuthMode) => {
   return (
     <div className='form__wrapper'>
-      <h2 className='form__title'>Регистрация</h2>
+      <h2 className='form__title' data-testid="header">Регистрация</h2>
       <form className='form__form'>
         <div className='form__row'>
         <CssTextField
@@ -75,7 +77,8 @@ const RegForm = (props) => {
         <div className="form__row">
           <button
             className='button form__button'
-            onClick={props.registrate}
+            data-testid="regButton"
+            onClick={registrate}
           >
             Зарегистрироваться
           </button>
@@ -86,7 +89,8 @@ const RegForm = (props) => {
           Уже зарегистрированы?
         </span>
         <StyledLink 
-          onClick={props.changeAuthMode}
+          onClick={changeAuthMode}
+          data-testid="goToLoginForm"
           className='form__reg-button'
         >
           Войти
@@ -95,9 +99,12 @@ const RegForm = (props) => {
     </div>
   );
 }
+RegForm.propTypes = {
+  registrate: PropTypes.func,
+  changeAuthMode: PropTypes.func
+}
 
-const RegFormWithConnect = connect(
-  null,
-  { registrate }
-)(RegForm);
+const mapDispatchToProps = { registrate };
+
+const RegFormWithConnect = connect( null, mapDispatchToProps)(RegForm);
 export { RegFormWithConnect };

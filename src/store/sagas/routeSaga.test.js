@@ -22,7 +22,7 @@ describe('getRouteSaga', () => {
 
   it('should call api and dispatch GET_ROUTE_SUCCESS action', async () => {
     const route = 'route';
-    const dummySuccessResponse = {route};
+    const dummySuccessResponse = [[30, 30], [40,40]];
 
     const requestRoute = jest
       .spyOn(routeApi, 'getRoute')
@@ -37,21 +37,20 @@ describe('getRouteSaga', () => {
       getRouteSaga,
       { payload: {} }
     );
-
     expect(requestRoute).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([getRouteSuccess(route)]);
+    expect(dispatched).toEqual([getRouteSuccess(dummySuccessResponse)]);
     requestRoute.mockClear();
   });
 
   it('should call api and dispatch GET_ROUTE_FAILURE action', async () => {
-    const dummyFailureResponse = {route: []};
+    const dummyFailureResponse = [];
 
     const requestRoute = jest
       .spyOn(routeApi, 'getRoute')
       .mockImplementation(() => Promise.resolve(dummyFailureResponse));
 
     const dispatched = [];
-
+    
     await runSaga(
       {
         dispatch: (action) => dispatched.push(action),
@@ -60,8 +59,9 @@ describe('getRouteSaga', () => {
       { payload: {} }
     );
 
+    console.log('----', dispatched);
     expect(requestRoute).toHaveBeenCalledTimes(1);
     expect(dispatched).toEqual([getRouteFailure([])]);
     requestRoute.mockClear();
-  })
-})
+  });
+});

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -53,16 +55,30 @@ export class OrderComponent extends React.Component {
     setAddressError: '',
   };
 
+  
+  static propTypes = {
+    token: PropTypes.string,
+    isProfileComplete: PropTypes.bool,
+    isLoaddingAddresses: PropTypes.bool,
+    errorAddresses: PropTypes.string,
+    addresses: PropTypes.array,
+    isLoaddingRoute: PropTypes.bool,
+    route: PropTypes.array,
+    errorRoute: PropTypes.string
+  }
+
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   getRoutes = event => {
     event.preventDefault();
+    console.log(this.state.fromAddress);
+    console.log(this.state.toAddress);
     if (this.state.fromAddress && this.state.toAddress) {
       this.props.getRoute(
-        this.state.fromAddress,
-        this.state.toAddress
+        {fromAddress: this.state.fromAddress,
+        toAddress: this.state.toAddress}
       );
     };
   }

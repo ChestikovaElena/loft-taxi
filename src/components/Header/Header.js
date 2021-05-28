@@ -16,10 +16,10 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-class Header extends React.Component {
+export class Header extends React.Component {
   static propTypes = {
-  logOut: PropTypes.func
-}
+    logOut: PropTypes.func
+  }
 
   unauthenticate = (event) => {
     event.preventDefault();

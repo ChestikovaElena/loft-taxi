@@ -6,19 +6,15 @@ import {
   getRouteFailure
 } from '../../store/actions/route';
 
-export function* getRouteSaga() {
-  const data = yield call(getRoute);
+export function* getRouteSaga(action) {
+  const {fromAddress, toAddress} = action.payload;
+  console.log(fromAddress, toAddress);
+  const data = yield call(getRoute, fromAddress, toAddress);
 
-  const mockData = [
-    [30.316273, 59.940578],
-    [30.316589, 59.940495],
-    [30.322144, 59.942886],
-    [30.322148, 59.942891]
-  ];
-  if (!!mockData) {
-    yield put(getRouteSuccess(mockData));
+  if (!!data) {
+    yield put(getRouteSuccess(data));
   } else {
-    yield put(getRouteFailure(data.error));
+    yield put(getRouteFailure([]));
   }
 }
 

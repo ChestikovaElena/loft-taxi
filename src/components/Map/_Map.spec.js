@@ -1,5 +1,5 @@
 import React from "react";
-import { Map } from "./Map.js";
+import { MapComponent } from "./Map.js";
 import { render } from "@testing-library/react";
 import mapboxgl from "mapbox-gl";
 
@@ -9,7 +9,7 @@ jest.mock("mapbox-gl", () => ({
 
 describe('Map', () => {
 it('renders correctly', () => {
-    const { getByTestId } = render(<Map />);
+    const { getByTestId } = render(<MapComponent />);
     expect(mapboxgl.Map).toHaveBeenCalledWith({
       style: 'mapbox://styles/mapbox/basic-v9',
       zoom: 13,

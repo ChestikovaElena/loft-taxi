@@ -13,7 +13,10 @@ export const getCardSuccess = ({ id, cardNumber, expiryDate, cardName, cvc }) =>
   payload: { id, cardNumber, expiryDate, cardName, cvc },
 });
 
-export const getCardFailure = (error) => ({ type: GET_CARD_FAILURE, payload: error});
+export const getCardFailure = (error) => ({
+  type: GET_CARD_FAILURE,
+  payload: error
+});
 
 export const updateCardSuccess = () => ({ type: UPDATE_CARD_SUCCESS });
 

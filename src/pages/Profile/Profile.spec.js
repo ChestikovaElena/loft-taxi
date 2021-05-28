@@ -1,10 +1,15 @@
 import React from "react";
-import { Profile } from './Profile';
 import { render } from "@testing-library/react";
+import { Provider } from 'react-redux';
+
+import store from '../../store';
+import { Profile } from './Profile';
 
 describe("Profile", () => {
   it("renders correctly", () => {
-    const { container } = render(<Profile />);
-    expect(container.innerHTML).toMatch("Профиль")
+    const { container } = render(
+      <Provider store={store}><Profile /></Provider>
+    );
+    expect(container.innerHTML).toMatch("background")
   });
 });

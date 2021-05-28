@@ -9,28 +9,30 @@ import {
 
 const initialState = {
   isLoaddingCard: false,
-  isUpdatingCard: false,
+  isUpdatedCard: false,
   error: '',
   data: {id: '', cardNumber: '', expiryDate: '', cardName: '', cvc: ''},
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_CARD:
-    case UPDATE_CARD:{
-      return { ...state, isLoaddingCard: true, isUpdatingCard: false };
+    case GET_CARD:{
+      return { ...state, isLoaddingCard: true, isUpdatedCard: false };
     }
     case GET_CARD_SUCCESS: {
-      return { ...state, isLoaddingCard: false, data: action.payload };
+      return { ...state, isLoaddingCard: false, isUpdatedCard: false, data: action.payload };
     }
     case GET_CARD_FAILURE: {
-      return { ...state, isLoaddingCard: false, error: action.payload };
+      return { ...state, isLoaddingCard: false, isUpdatedCard: false, error: action.payload };
+    }
+    case UPDATE_CARD:{
+      return { ...state, isLoaddingCard: false, isUpdatedCard: false };
     }
     case UPDATE_CARD_SUCCESS: {
-      return { ...state, isLoaddingCard: false, isUpdatingCard: true};
+      return { ...state, isLoaddingCard: false, isUpdatedCard: true};
     }
     case UPDATE_CARD_ERROR: {
-      return { ...state, isLoaddingCard: false, error: action.payload };
+      return { ...state, isLoaddingCard: false, isUpdatedCard: false, error: action.payload };
     }
     default:
       return state;

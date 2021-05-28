@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import * as mapApi from './api';
 
-// const Map = () => {
-  class MapComponent extends React.Component{
-  // const [map, setMap] = useState(null);
+export class MapComponent extends React.Component{
   state = { map: null };
   mapContainer = React.createRef();
 
@@ -17,6 +17,7 @@ import * as mapApi from './api';
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
+      console.log(this.props.route);
       if (this.state.map && this.props.route) {
         mapApi.drawRoute(this.state.map, this.props.route);
       }
@@ -34,7 +35,11 @@ import * as mapApi from './api';
       </div>
     );
   };
+}
 
+MapComponent.propTypes = {
+  isLoaddingRoute: PropTypes.bool,
+  route: PropTypes.array
 }
 
 const mapStateToProps = ({ route }) => ({

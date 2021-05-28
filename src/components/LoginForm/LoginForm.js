@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
@@ -52,8 +54,12 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-class LoginForm extends React.Component {
+export class LoginForm extends React.Component {
   state = {email: '', password: '', errorTextEmail: ''};
+
+  static propTypes = {
+    authenticate: PropTypes.func
+  }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });

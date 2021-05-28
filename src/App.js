@@ -10,7 +10,7 @@ import Profile from './pages/Profile';
 import Home from './pages/Home';
 import './App.css';
 
-class App extends React.Component {
+export class AppComponent extends React.Component {
   render() {
     return (
       <main data-testid="container">
@@ -30,7 +30,7 @@ class App extends React.Component {
   };
 };
 
-App.propTypes = {
+AppComponent.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
@@ -39,4 +39,5 @@ const mapStateToProps = (state) => ({
   error: state.auth.error
 });
 
-export default connect(mapStateToProps)(App);
+const App = connect(mapStateToProps)(AppComponent);
+export default App;

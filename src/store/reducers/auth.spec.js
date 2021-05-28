@@ -6,8 +6,7 @@ describe("auth", () => {
     it('returns isLoggedIn true', () => {
       expect(auth({}, logIn())).toEqual({
       "error": "",
-      "isLoggedIn": true,
-      "token": undefined});
+      "isLoggedIn": true});
     });
   });
 

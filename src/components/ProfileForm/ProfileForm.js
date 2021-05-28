@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -93,7 +95,7 @@ class ProfileComponent extends React.Component {
         ?
         <div className='form__wrapper form__wrapper--profile'>Loading...</div>
         :
-        this.props.isUpdatingCard
+        this.props.isUpdatedCard
         ?
         <ProfileWarning />
         :
@@ -206,12 +208,22 @@ class ProfileComponent extends React.Component {
   }
 }
 
+ProfileComponent.propTypes = {
+  token: PropTypes.string,
+  cardData: PropTypes.object,
+  isLoaddingCard: PropTypes.bool,
+  error: PropTypes.string,
+  isUpdatedCard: PropTypes.bool,
+  getCard: PropTypes.func,
+  updateCard: PropTypes.func,
+}
+
 const mapStateToProps = ({ card, auth }) => ({
   token: auth.token,
   cardData: card.data,
   isLoaddingCard: card.isLoaddingCard,
   error: card.error,
-  isUpdatingCard: card.isUpdatingCard
+  isUpdatedCard: card.isUpdatedCard
 })
 
 const mapDispatchToProps = {getCard, updateCard};
