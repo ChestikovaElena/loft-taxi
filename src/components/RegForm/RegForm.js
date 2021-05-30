@@ -5,7 +5,22 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { registrate } from '../../store/actions/registration';
+
+const schema = yup.object().shape({
+  email: yup.string()
+    .required("Обязательное поле")
+    .matches(
+      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+      "Не верно введен email"),
+  name: yup.string(),
+  password: yup.string()
+    .required("Введите пароль")
+    .min(3, "Длина пароля не менее 3 символов")
+});
 
 const CssTextField = withStyles({
   root: {
@@ -37,48 +52,97 @@ const StyledLink = withStyles({
 })(Button);
 
 export const RegForm = (registrate, changeAuthMode) => {
+  const {
+    handleSubmit,
+    formState: { errors },
+    control
+  } = useForm({ mode:"onSubmit", resolver: yupResolver(schema) });
+
+  const submitLogic = (formData) => {
+    const nameArray = formData.name.split(" ");
+    const name = nameArray[0]||"";
+    const surname = nameArray[1]||"";
+    registrate(formData.email, formData.password, name, surname);
+  }
+  
   return (
     <div className='form__wrapper'>
       <h2 className='form__title' data-testid="header">Регистрация</h2>
-      <form className='form__form'>
+      <form className='form__form' onSubmit={handleSubmit(submitLogic)}>
         <div className='form__row'>
-        <CssTextField
-          required
-          className='form__input'
-          id="loginEmail"
-          label="Email"
-          type="email"
-          data-testid="emailInput"
-          placeholder="mail@mail.ru"
-        />
-        </div>
-        <div className="form__row">
-          <CssTextField
-            required
-            className='form__input'
-            id="loginName"
-            label="Как вас зовут?"
-            type="text"
-            data-testid="nameInput"
-            placeholder="Петр Александрович"
+        <Controller
+            name="email"
+            id="email"
+            defaultValue=""
+            control={ control }
+            render={({ field }) => {
+              return (
+                <CssTextField
+                  { ...field }
+                  label="Email"
+                  placeholder="mail@mail.ru"
+                  className="form__input"
+                  helperText={errors?.email?.message && (
+                    errors.email.message
+                  )}
+                  fullWidth
+                  data-testid="emailInput"
+                />
+              );
+            }}
           />
         </div>
         <div className="form__row">
-          <CssTextField
-            required
-            className='form__input'
-            id="loginPassword"
-            label="Придумайте пароль"
-            type="password"
-            data-testid="passwordInput"
-            placeholder="*************"
+          <Controller
+            name="name"
+            id="name"
+            defaultValue=""
+            control={ control }
+            render={({ field }) => {
+              return (
+                <CssTextField
+                  { ...field }
+                  label="Как вас зовут?"
+                  placeholder="Петр Александрович"
+                  className="form__input"
+                  helperText={errors?.name?.message && (
+                    errors.name.message
+                  )}
+                  fullWidth
+                  data-testid="nameInput"
+                />
+              );
+            }}
+          />
+        </div>
+        <div className="form__row">
+          <Controller
+            name="password"
+            id="password"
+            defaultValue=""
+            control={ control }
+            render={({ field }) => {
+              return (
+                <CssTextField
+                  { ...field }
+                  label="Пароль"
+                  placeholder="*************"
+                  className="form__input"
+                  helperText={errors?.password?.message && (
+                    errors.password.message
+                  )}
+                  fullWidth
+                  data-testid="passwordInput"
+                />
+              );
+            }}
           />
         </div>
         <div className="form__row">
           <button
+            type="submit"
             className='button form__button'
             data-testid="regButton"
-            onClick={registrate}
           >
             Зарегистрироваться
           </button>

@@ -6,7 +6,8 @@ import RegFormWithConnect from '../../components/RegForm';
 
 class Home extends React.Component {
   state = {
-    mode: 'login'
+    mode: 'registration'
+    // mode: 'login'
   };
 
   handleModeChange = () => {
