@@ -55,26 +55,12 @@ export class OrderComponent extends React.Component {
     setAddressError: '',
   };
 
-  
-  static propTypes = {
-    token: PropTypes.string,
-    isProfileComplete: PropTypes.bool,
-    isLoaddingAddresses: PropTypes.bool,
-    errorAddresses: PropTypes.string,
-    addresses: PropTypes.array,
-    isLoaddingRoute: PropTypes.bool,
-    route: PropTypes.array,
-    errorRoute: PropTypes.string
-  }
-
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
 
   getRoutes = event => {
     event.preventDefault();
-    console.log(this.state.fromAddress);
-    console.log(this.state.toAddress);
     if (this.state.fromAddress && this.state.toAddress) {
       this.props.getRoute(
         {fromAddress: this.state.fromAddress,
@@ -191,6 +177,20 @@ export class OrderComponent extends React.Component {
       </>
     );
   }
+}
+
+OrderComponent.propTypes = {
+  token: PropTypes.string,
+  isProfileComplete: PropTypes.bool,
+  isLoaddingAddresses: PropTypes.bool,
+  errorAddresses: PropTypes.string,
+  addresses: PropTypes.array,
+  isLoaddingRoute: PropTypes.bool,
+  route: PropTypes.object,
+  errorRoute: PropTypes.string,
+  getCard: PropTypes.func,
+  getAddresses: PropTypes.func,
+  getRoute: PropTypes.func,
 }
 
 const mapStateToProps = ({ auth, card, addresses, route }) => ({

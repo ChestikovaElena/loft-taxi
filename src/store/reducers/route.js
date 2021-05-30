@@ -7,9 +7,9 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    // case GET_ROUTE: {
-    //   return { ...state, isLoaddingRoute: true }
-    // }
+    case GET_ROUTE: {
+      return { ...state, isLoaddingRoute: true }
+    }
     case GET_ROUTE_SUCCESS: {
       return { ...state, isLoaddingRoute: true, route: action.payload }
     }

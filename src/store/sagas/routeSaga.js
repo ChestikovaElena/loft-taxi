@@ -8,13 +8,12 @@ import {
 
 export function* getRouteSaga(action) {
   const {fromAddress, toAddress} = action.payload;
-  console.log(fromAddress, toAddress);
   const data = yield call(getRoute, fromAddress, toAddress);
 
   if (!!data) {
     yield put(getRouteSuccess(data));
   } else {
-    yield put(getRouteFailure([]));
+    yield put(getRouteFailure());
   }
 }
 

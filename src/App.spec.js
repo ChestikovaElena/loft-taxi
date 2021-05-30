@@ -1,6 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { Provider } from 'react-redux';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 import store from './store';
 import AppComponent from "./App.js";
@@ -13,7 +14,11 @@ jest.mock("./pages/Profile", () => ({ Profile: () => <div>Profile content</div> 
 describe("App", () => {
   it("renders correctly", () => {
     const { container } = render(
-      <Provider store={store}><AppComponent /></Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <AppComponent />
+        </Provider>
+      </BrowserRouter>
     );
     expect(container.innerHTML).toMatch("Map content");
   });

@@ -39,7 +39,7 @@ export class MapComponent extends React.Component{
 
 MapComponent.propTypes = {
   isLoaddingRoute: PropTypes.bool,
-  route: PropTypes.array
+  route: PropTypes.object
 }
 
 const mapStateToProps = ({ route }) => ({

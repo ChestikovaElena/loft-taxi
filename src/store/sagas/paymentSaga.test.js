@@ -29,9 +29,9 @@ describe('loadProfile', () => {
 
   it('should call api and dispatch GET_CARD_SUCCESS action', async () => {
     const id = 'id';
-    const  cardNumber = 'cardNumber',
-    const  expiryDate = 'expiryDate',
-    const  cardName = 'cardName',
+    const  cardNumber = 'cardNumber';
+    const  expiryDate = 'expiryDate';
+    const  cardName = 'cardName';
     const  cvc = 'cvc';
     const dummySuccessResponse = {id, cardNumber, expiryDate, cardName, cvc};
 
@@ -50,7 +50,7 @@ describe('loadProfile', () => {
     );
 
     expect(requestGetCard).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([getCardSuccess(id, cardNumber, expiryDate, cardName, cvc)]);
+    expect(dispatched).toEqual([getCardSuccess({id, cardNumber, expiryDate, cardName, cvc})]);
     requestGetCard.mockClear();
   });
 
@@ -112,11 +112,11 @@ describe('updateProfile', () => {
     );
 
     expect(requestUpdateCard).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([updateCardSuccess(id, cardNumber, expiryDate, cardName, cvc)]);
+    expect(dispatched).toEqual([updateCardSuccess()]);
     requestUpdateCard.mockClear();
   });
 
-  it('should call api and dispatch GET_CARD_FAILURE action', async () => {
+  it('should call api and dispatch UPDATE_CARD_FAILURE action', async () => {
     const error = 'error';
     const dummyFailureResponse = {success: false, error};
 
@@ -140,7 +140,7 @@ describe('updateProfile', () => {
       );
 
     expect(requestUpdateCard).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([getCardFailure(error)]);
+    expect(dispatched).toEqual([updateCardError(error)]);
     requestUpdateCard.mockClear();
   });
 });

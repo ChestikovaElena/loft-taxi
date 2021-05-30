@@ -8,7 +8,7 @@ export const UPDATE_CARD = "UPDATE_CARD";
 
 export const getCard = () => ({ type: GET_CARD });
 
-export const getCardSuccess = ({ id, cardNumber, expiryDate, cardName, cvc }) => ({
+export const getCardSuccess = ( id, cardNumber, expiryDate, cardName, cvc ) => ({
   type: GET_CARD_SUCCESS,
   payload: { id, cardNumber, expiryDate, cardName, cvc },
 });

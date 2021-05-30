@@ -5,8 +5,21 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { authenticate } from '../../store/actions/auth';
-import validateEmail from './utils';
+
+const schema = yup.object().shape({
+  email: yup.string()
+    .required("Обязательное поле")
+    .matches(
+      /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+      "Не верно введен email"),
+  password: yup.string()
+    .required("Введите пароль")
+    .min(3, "Длина пароля не менее 3 символов")
+});
 
 const StyledButton = withStyles({
   root: {
@@ -54,89 +67,98 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-export class LoginForm extends React.Component {
-  state = {email: '', password: '', errorTextEmail: ''};
+export const LoginForm = ( authenticate, changeAuthMode ) => {
+  const {
+    handleSubmit,
+    formState: { errors },
+    control
+  } = useForm({ mode:"onSubmit", resolver: yupResolver(schema) });
 
-  static propTypes = {
-    authenticate: PropTypes.func
-  }
-
-  handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  const submitLogic = (formData) => {
+    authenticate(formData.email, formData.password);
   };
 
-  authenticate = (event) => {
-    event.preventDefault();
-    if (!validateEmail(this.state.email)) {
-      this.setState({ errorTextEmail: 'Некорректный email' });
-    }
-    this.props.authenticate(this.state.email, this.state.password);
-  };
-
-  render() {
-    const { email, password, errorTextEmail } = this.state;
-
-    return (
-      <div className='form__wrapper' data-testid="loginForm">
-        <h2 className='form__title'>Войти</h2>
-        <form className='form__form'>
-          <div className='form__row'>
-            <CssTextField
-              required
-              className='form__input'
-              id="email"
-              label="Email"
-              type="email"
-              name="email"
-              data-testid="emailInput"
-              placeholder="mail@mail.ru"
-              value = {email}
-              error= {errorTextEmail !== ''}
-              helperText={errorTextEmail}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form__row row__after">
-            <CssTextField
-              required
-              className='form__input'
-              id="password"
-              label="Пароль"
-              type="password"
-              name="password"
-              data-testid="passwordInput"
-              placeholder="*************"
-              value = {password}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="form__row">
-            <StyledButton
-              type="submit"
-              className='button form__button'
-              data-testid="submitButton"
-              color="primary"
-              onClick={this.authenticate}
-            >
-              Войти
-            </StyledButton>
-          </div>
-        </form>
-        <div className='form__reg'>
-          <div className='form__reg-text'>Новый пользователь?</div>
-          <StyledLink
-            onClick={this.props.changeAuthMode}
-            className='form__reg-button'
-          >
-            Регистрация
-          </StyledLink>
+  return (
+    <div className='form__wrapper' data-testid="loginForm">
+      <h2 className='form__title'>Войти</h2>
+      <form className='form__form' 
+        onSubmit={handleSubmit(submitLogic)}>
+        <div className='form__row'>
+          <Controller
+            name="email"
+            id="email"
+            defaultValue=""
+            control={ control }
+            render={({ field }) => {
+              return (
+                <CssTextField
+                  { ...field }
+                  label="Email"
+                  placeholder="mail@mail.ru"
+                  helperText={errors?.email?.message && (
+                    errors.email.message
+                  )}
+                  fullWidth
+                  data-testid="emailInput"
+                />
+              );
+            }}
+          />
         </div>
+        <div className="form__row row__after">
+        <Controller
+            name="password"
+            id="password"
+            defaultValue=""
+            control={ control }
+            render={({ field }) => {
+              return (
+                <CssTextField
+                  { ...field }
+                  label="Пароль"
+                  placeholder="*************"
+                  helperText={errors?.password?.message && (
+                    errors.password.message
+                  )}
+                  fullWidth
+                  data-testid="passwordInput"
+                />
+              );
+            }}
+          />
+        </div>
+        <div className="form__row">
+          <StyledButton
+            type="submit"
+            className='button form__button'
+            data-testid="submitButton"
+            color="primary"
+          >
+            Войти
+          </StyledButton>
+        </div>
+      </form>
+      <div className='form__reg'>
+        <div className='form__reg-text'>Новый пользователь?</div>
+        <StyledLink
+          onClick={changeAuthMode}
+          data-testid="goToRegForm"
+          className='form__reg-button'
+        >
+          Регистрация
+        </StyledLink>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
-const mapDispatchToProps = {authenticate};
+LoginForm.propTypes = {
+  authenticate: PropTypes.func,
+  changeAuthMode: PropTypes.func
+}
+
+const mapDispatchToProps = { authenticate };
+
 const LoginFormWithConnect = connect(null, mapDispatchToProps)(LoginForm);
 
 export { LoginFormWithConnect };

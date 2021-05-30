@@ -43,7 +43,7 @@ describe('getRouteSaga', () => {
   });
 
   it('should call api and dispatch GET_ROUTE_FAILURE action', async () => {
-    const dummyFailureResponse = [];
+    const dummyFailureResponse = undefined;
 
     const requestRoute = jest
       .spyOn(routeApi, 'getRoute')
@@ -61,7 +61,7 @@ describe('getRouteSaga', () => {
 
     console.log('----', dispatched);
     expect(requestRoute).toHaveBeenCalledTimes(1);
-    expect(dispatched).toEqual([getRouteFailure([])]);
+    expect(dispatched).toEqual([getRouteFailure(dummyFailureResponse)]);
     requestRoute.mockClear();
   });
 });

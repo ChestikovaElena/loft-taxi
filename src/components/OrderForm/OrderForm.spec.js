@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 
 describe("OrderForm", () => {
   it("renders correctly", () => {
-    // const { getByTestId } = render(<OrderComponent />)
+    const { getByTestId } = render(<OrderComponent isProfileComplete isLoaddingRoute/>);
 
-    // expect(getByTestId('emailInput')).toHaveClass('form__input')
+    expect(getByTestId('header').textContent).toBe('Профиль');
     // expect(getByTestId('passwordInput')).toHaveClass('form__input')
     // expect(getByTestId('submitButton')).toHaveClass('form__button')
   })
