@@ -70,7 +70,6 @@ export class OrderComponent extends React.Component {
   }
 
   goToOrder = event => {
-
   }
 
   componentDidMount() {
@@ -95,21 +94,21 @@ export class OrderComponent extends React.Component {
     return (
       <>
         {this.props.isProfileComplete ?
-          this.props.isLoaddingRoute ?
-          <div className='form__wrapper form__wrapper--warning-order'>
+          this.props.isLoaddingRoute  ?
+            <div className='form__wrapper form__wrapper--warning-order'>
             <h2 className='form__title form__title--warning-order'>Заказ размещен</h2>
             <div className='form__subtitle form__subtitle--warning-order'>
               Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
             </div>
             <StyledButton
-                type="submit"
-                className='button form__button'
-                data-testid="submitButton"
-                color="primary"
-                onClick={this.goToOrder}
-              >
-                Сделать новый заказ
-              </StyledButton>
+              type="submit"
+              className='button form__button'
+              data-testid="submitButton"
+              color="primary"
+              onClick={this.goToOrder}
+            >
+              Сделать новый заказ
+            </StyledButton>
           </div>
             :
             <form className='form__wrapper form__wrapper--order'>
@@ -186,7 +185,7 @@ OrderComponent.propTypes = {
   errorAddresses: PropTypes.string,
   addresses: PropTypes.array,
   isLoaddingRoute: PropTypes.bool,
-  route: PropTypes.object,
+  route: PropTypes.array,
   errorRoute: PropTypes.string,
   getCard: PropTypes.func,
   getAddresses: PropTypes.func,

@@ -2,7 +2,7 @@ import { GET_ROUTE, GET_ROUTE_SUCCESS, GET_ROUTE_FAILURE } from "../actions/rout
 
 const initialState = {
   isLoaddingRoute: false,
-  route: {},
+  route: [],
 };
 
 export default function(state = initialState, action) {

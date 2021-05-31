@@ -67,7 +67,7 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-export const LoginForm = ( authenticate, changeAuthMode ) => {
+export const LoginForm = ( {authenticate, changeAuthMode} ) => {
   const {
     handleSubmit,
     formState: { errors },

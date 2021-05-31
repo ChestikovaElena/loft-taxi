@@ -31,12 +31,14 @@ export class AppComponent extends React.Component {
 };
 
 AppComponent.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
+  isRegistriedIn: PropTypes.bool,
 };
 
-const mapStateToProps = (state) => ({
-  isLoggedIn: state.auth.isLoggedIn,
-  error: state.auth.error
+const mapStateToProps = ( {auth, reg} ) => ({
+  isLoggedIn: auth.isLoggedIn,
+  error: auth.error,
+  isRegistriedIn: reg.isRegistriedIn
 });
 
 const App = connect(mapStateToProps)(AppComponent);

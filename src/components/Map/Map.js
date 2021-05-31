@@ -17,8 +17,8 @@ export class MapComponent extends React.Component{
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      console.log(this.props.route);
-      if (this.state.map && this.props.route) {
+      if (this.state.map && this.props.route.length) {
+        console.log("---route", this.props.route.length);
         mapApi.drawRoute(this.state.map, this.props.route);
       }
     }
@@ -39,7 +39,7 @@ export class MapComponent extends React.Component{
 
 MapComponent.propTypes = {
   isLoaddingRoute: PropTypes.bool,
-  route: PropTypes.object
+  route: PropTypes.array
 }
 
 const mapStateToProps = ({ route }) => ({

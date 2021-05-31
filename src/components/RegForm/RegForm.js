@@ -51,7 +51,7 @@ const StyledLink = withStyles({
   },
 })(Button);
 
-export const RegForm = (registrate, changeAuthMode) => {
+export const RegForm = ( {registrate, changeAuthMode} ) => {
   const {
     handleSubmit,
     formState: { errors },
