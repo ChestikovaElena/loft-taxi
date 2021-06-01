@@ -15,7 +15,22 @@ export const createMap = container => {
   return map;
 }
 
+const deleteLayer = ( LAYER_ID, map) => {
+  if (map.getLayer(LAYER_ID)) {
+    map.removeLayer(LAYER_ID);
+  }
+  if (map.getSource(LAYER_ID)) {
+    map.removeSource(LAYER_ID);
+  }
+};
+
 export const drawRoute = (map, coordinates) => {
+  // const layerById = map.getStyle('route');
+  // console.log('----l', layerById);
+  const LAYER_ID = 'route';
+
+  deleteLayer(LAYER_ID, map);
+  
   map.flyTo({
     center: coordinates[0],
     zoom: 15

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Select from '@material-ui/core/Select';
@@ -10,7 +10,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { getAddresses } from '../../store/actions/addresses';
-import { getRoute } from '../../store/actions/route';
+import { getRoute, resetRoute } from '../../store/actions/route';
 import { getCard } from '../../store/actions/card';
 
 const CssInputLabel = withStyles({
@@ -69,7 +69,12 @@ export class OrderComponent extends React.Component {
     };
   }
 
-  goToOrder = event => {
+  goToNewOrder = event => {
+    this.props.resetRoute();
+    this.setState({
+      fromAddress: '',
+      toAddress: '',
+    });
   }
 
   componentDidMount() {
@@ -105,7 +110,7 @@ export class OrderComponent extends React.Component {
               className='button form__button'
               data-testid="submitButton"
               color="primary"
-              onClick={this.goToOrder}
+              onClick={this.goToNewOrder}
             >
               Сделать новый заказ
             </StyledButton>
@@ -203,6 +208,6 @@ const mapStateToProps = ({ auth, card, addresses, route }) => ({
   errorRoute: route.error,
 });
 
-const mapDispatchToProps = {getCard, getAddresses, getRoute};
+const mapDispatchToProps = {getCard, getAddresses, getRoute, resetRoute};
 
 export const OrderForm = connect(mapStateToProps, mapDispatchToProps)(OrderComponent);
