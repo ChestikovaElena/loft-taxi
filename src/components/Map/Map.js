@@ -18,7 +18,6 @@ export class MapComponent extends React.Component{
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       if (this.state.map && this.props.route.length) {
-        console.log("---route", this.props.route.length);
         mapApi.drawRoute(this.state.map, this.props.route);
       }
     }

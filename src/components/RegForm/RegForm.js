@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Button from "@material-ui/core/Button";
@@ -51,7 +52,7 @@ const StyledLink = withStyles({
   },
 })(Button);
 
-export const RegForm = ( {registrate, changeAuthMode} ) => {
+export const RegForm = ( {registrate, changeAuthMode, isRegistriedIn} ) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -63,7 +64,13 @@ export const RegForm = ( {registrate, changeAuthMode} ) => {
     const name = nameArray[0]||"";
     const surname = nameArray[1]||"";
     registrate(formData.email, formData.password, name, surname);
-  }
+  };
+
+  useEffect(() => {
+    if (isRegistriedIn) {
+      return <Redirect to="/map" />
+    };
+  });
   
   return (
     <div className='form__wrapper'>
@@ -165,10 +172,15 @@ export const RegForm = ( {registrate, changeAuthMode} ) => {
 }
 RegForm.propTypes = {
   registrate: PropTypes.func,
-  changeAuthMode: PropTypes.func
+  changeAuthMode: PropTypes.func,
+  isRegistriedIn: PropTypes.bool,
 }
+
+const mapStateToProps = ({ reg }) => ({
+  isRegistriedIn: reg.isRegistriedIn
+});
 
 const mapDispatchToProps = { registrate };
 
-const RegFormWithConnect = connect( null, mapDispatchToProps)(RegForm);
+const RegFormWithConnect = connect( mapStateToProps, mapDispatchToProps)(RegForm);
 export { RegFormWithConnect };
