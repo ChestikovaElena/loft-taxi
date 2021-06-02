@@ -17,11 +17,11 @@ describe("getCard", () => {
     it('returns isLoadding false', () => {
       expect(card({}, getCardSuccess())).toEqual({
         "data": {
-          "cardName": undefined,
+          "cardName": '',
           "cardNumber": undefined,
           "cvc": undefined,
           "expiryDate": undefined,
-          "id": undefined,
+          "id": '',
         },
         "isLoaddingCard": false,
         "isUpdatedCard": false,

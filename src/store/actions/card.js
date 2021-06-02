@@ -6,9 +6,9 @@ export const UPDATE_CARD_SUCCESS = "UPDATE_CARD_SUCCESS";
 export const UPDATE_CARD_ERROR = "UPDATE_CARD_ERROR";
 export const UPDATE_CARD = "UPDATE_CARD";
 
-export const getCard = () => ({ type: GET_CARD });
+export const getCard = (token) => ({ type: GET_CARD, payload: token});
 
-export const getCardSuccess = ( id, cardNumber, expiryDate, cardName, cvc ) => ({
+export const getCardSuccess = ( {id, cardNumber, expiryDate, cardName, cvc} ) => ({
   type: GET_CARD_SUCCESS,
   payload: { id, cardNumber, expiryDate, cardName, cvc },
 });
