@@ -1,2 +1,2 @@
-import { ProfileForm } from './ProfileForm.js'
-export default ProfileForm
+import { ProfileFormWithConnect } from './ProfileForm.js'
+export default ProfileFormWithConnect

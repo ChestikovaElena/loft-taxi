@@ -44,7 +44,7 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-class ProfileComponent extends React.Component {
+class ProfileForm extends React.Component {
   componentDidMount() {
     this.props.getCard(this.props.token);
   };
@@ -208,7 +208,7 @@ class ProfileComponent extends React.Component {
   }
 }
 
-ProfileComponent.propTypes = {
+ProfileForm.propTypes = {
   token: PropTypes.string,
   cardData: PropTypes.object,
   isLoaddingCard: PropTypes.bool,
@@ -228,4 +228,4 @@ const mapStateToProps = ({ card, auth }) => ({
 
 const mapDispatchToProps = {getCard, updateCard};
 
-export const ProfileForm = connect(mapStateToProps, mapDispatchToProps)(ProfileComponent);
+export const ProfileFormWithConnect = connect(mapStateToProps, mapDispatchToProps)(ProfileForm);
