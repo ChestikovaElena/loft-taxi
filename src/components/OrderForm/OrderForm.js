@@ -78,8 +78,8 @@ export class OrderForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getCard(this.props.token);
-    this.props.getAddresses();
+    this.props.getCard && this.props.getCard(this.props.token);
+    this.props.getAddresses && this.props.getAddresses();
     if (!!this.props.addresses) {
       this.setState({ fromList: this.props.addresses })
       this.setState({ toList: this.props.addresses })
@@ -99,7 +99,7 @@ export class OrderForm extends React.Component {
     return (
       <>
         {this.props.isProfileComplete ?
-          this.props.route.length !== 0 ?
+          this.props.isLoadedRoute ?
             <div className='form__wrapper form__wrapper--warning-order'>
             <h2 className='form__title form__title--warning-order' data-testid="header">Заказ размещен</h2>
             <div className='form__subtitle form__subtitle--warning-order'>
@@ -117,12 +117,12 @@ export class OrderForm extends React.Component {
           </div>
             :
             this.props.isLoaddingRoute ?
-              <div className='form__wrapper'>Маршрут загружается</div>
+              <div className='form__wrapper' data-testid="header">Маршрут загружается</div>
               :
               <form className='form__wrapper form__wrapper--order'>
                 <div className='order__block'>
                   <div className='order__row'>
-                    <CssInputLabel id='route-from-label'>Откуда</CssInputLabel>
+                    <CssInputLabel id='route-from-label' data-testid='fromAddress'>Откуда</CssInputLabel>
                     <CssSelect
                       className ='form__select'
                       name='fromAddress'
@@ -169,7 +169,7 @@ export class OrderForm extends React.Component {
               </form>
           :
           <div className='form__wrapper form__wrapper--warning warning--order'>
-            <div className='form__subtitle form__subtitle--warning'>
+            <div className='form__subtitle form__subtitle--warning' data-testid="header">
               Введите данные карты.
             </div>
             <Link
@@ -193,6 +193,7 @@ OrderForm.propTypes = {
   errorAddresses: PropTypes.string,
   addresses: PropTypes.array,
   isLoaddingRoute: PropTypes.bool,
+  isLoadedRoute: PropTypes.bool,
   route: PropTypes.array,
   errorRoute: PropTypes.string,
   getCard: PropTypes.func,
@@ -207,6 +208,7 @@ const mapStateToProps = ({ auth, card, addresses, route }) => ({
   errorAddresses: addresses.error,
   addresses: addresses.addresses,
   isLoaddingRoute: route.isLoaddingRoute,
+  isLoadedRoute: route.route!== undefined && route.route!== [],
   route: route.route,
   errorRoute: route.error,
 });
