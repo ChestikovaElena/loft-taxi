@@ -101,7 +101,7 @@ export class OrderComponent extends React.Component {
         {this.props.isProfileComplete ?
           this.props.isLoaddingRoute  ?
             <div className='form__wrapper form__wrapper--warning-order'>
-            <h2 className='form__title form__title--warning-order'>Заказ размещен</h2>
+            <h2 className='form__title form__title--warning-order' data-testid="header">Заказ размещен</h2>
             <div className='form__subtitle form__subtitle--warning-order'>
               Ваше такси уже едет к вам. Прибудет приблизительно через 10 минут.
             </div>

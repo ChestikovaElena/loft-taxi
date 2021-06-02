@@ -52,7 +52,7 @@ const StyledLink = withStyles({
   },
 })(Button);
 
-export const RegForm = ( {registrate, changeAuthMode, isRegistriedIn} ) => {
+export const RegForm = ( {registrate, changeAuthMode} ) => {
   const {
     handleSubmit,
     formState: { errors },
@@ -66,12 +66,6 @@ export const RegForm = ( {registrate, changeAuthMode, isRegistriedIn} ) => {
     registrate(formData.email, formData.password, name, surname);
   };
 
-  useEffect(() => {
-    if (isRegistriedIn) {
-      return <Redirect to="/map" />
-    };
-  });
-  
   return (
     <div className='form__wrapper'>
       <h2 className='form__title' data-testid="header">Регистрация</h2>
@@ -173,14 +167,9 @@ export const RegForm = ( {registrate, changeAuthMode, isRegistriedIn} ) => {
 RegForm.propTypes = {
   registrate: PropTypes.func,
   changeAuthMode: PropTypes.func,
-  isRegistriedIn: PropTypes.bool,
 }
-
-const mapStateToProps = ({ reg }) => ({
-  isRegistriedIn: reg.isRegistriedIn
-});
 
 const mapDispatchToProps = { registrate };
 
-const RegFormWithConnect = connect( mapStateToProps, mapDispatchToProps)(RegForm);
+const RegFormWithConnect = connect( null, mapDispatchToProps)(RegForm);
 export { RegFormWithConnect };

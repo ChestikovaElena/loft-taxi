@@ -3,18 +3,18 @@ import { signIn, signInError } from '../actions/registration';
 
 describe("registration", () => {
   describe("#SIGN_IN", () => {
-    it('returns isRegistriedIn true,', () => {
+    it('returns isLoggedIn true,', () => {
       expect(registration({}, signIn())).toEqual({
         "error": "",
-        "isRegistriedIn": true,
+        "isLoggedIn": true,
       });
     });
   });
 
   describe("#SIGN_IN_ERROR", () => {
-    it('returns isRegistriedIn false', () => {
+    it('returns isLoggedIn false', () => {
       expect(registration({}, signInError())).toEqual({
-        "isRegistriedIn": false
+        "isLoggedIn": false
       });
     });
   });
