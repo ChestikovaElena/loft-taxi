@@ -1,8 +1,8 @@
 import { SIGN_IN, SIGN_IN_ERROR } from "../actions/registration";
 
 const initialState = {
-  isLoggedIn: false,
-  token: '',
+  isLoggedIn: !!localStorage.getItem('token'),
+  token: localStorage.getItem('token'),
   error: ''
 };
 

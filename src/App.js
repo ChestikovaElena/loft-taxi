@@ -34,8 +34,8 @@ AppComponent.propTypes = {
   isLoggedIn: PropTypes.bool,
 };
 
-const mapStateToProps = ( {auth, reg} ) => ({
-  isLoggedIn: auth.isLoggedIn || reg.isLoggedIn,
+const mapStateToProps = ( {auth} ) => ({
+  isLoggedIn: auth.isLoggedIn,
   error: auth.error,
 });
 
