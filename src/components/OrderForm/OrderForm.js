@@ -45,7 +45,7 @@ const StyledButton = withStyles({
   },
 })(Button);
 
-export class OrderComponent extends React.Component {
+export class OrderForm extends React.Component {
   state = {
     fromAddress: '',
     toAddress: '',
@@ -186,7 +186,7 @@ export class OrderComponent extends React.Component {
   }
 }
 
-OrderComponent.propTypes = {
+OrderForm.propTypes = {
   token: PropTypes.string,
   isProfileComplete: PropTypes.bool,
   isLoaddingAddresses: PropTypes.bool,
@@ -213,4 +213,4 @@ const mapStateToProps = ({ auth, card, addresses, route }) => ({
 
 const mapDispatchToProps = {getCard, getAddresses, getRoute, resetRoute};
 
-export const OrderForm = connect(mapStateToProps, mapDispatchToProps)(OrderComponent);
+export const OrderFormWithConnect = connect(mapStateToProps, mapDispatchToProps)(OrderForm);
