@@ -25,7 +25,7 @@ describe("App", () => {
 
   describe("when clicked on navigation buttons", () => {
     it("opens the corresponding page", () => {
-      const { getByText, container } = render(<AppComponent isLoggedIn />);
+      const { getByText, container } = render(<AppComponent token />);
       fireEvent.click(getByText('Карта'));
       expect(container.innerHTML).toMatch("Map content");
       fireEvent.click(getByText('Профиль'));

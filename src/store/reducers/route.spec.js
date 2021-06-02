@@ -3,9 +3,9 @@ import { getRouteSuccess, getRouteFailure } from '../actions/route';
 
 describe("route", () => {
   describe("#GET_ROUTE_SUCCESS", () => {
-    it('returns isLoaddingRoute true,', () => {
+    it('returns isLoaddingRoute false,', () => {
       expect(route({}, getRouteSuccess())).toEqual({
-        "isLoaddingRoute": true
+        "isLoaddingRoute": false
       });
     });
   });

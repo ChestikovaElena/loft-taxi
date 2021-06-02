@@ -16,7 +16,7 @@ export default function(state = initialState, action) {
       return { ...state, isLoaddingRoute: true }
     }
     case GET_ROUTE_SUCCESS: {
-      return { ...state, isLoaddingRoute: true, route: action.payload }
+      return { ...state, isLoaddingRoute: false, route: action.payload }
     }
     case GET_ROUTE_FAILURE: {
       return { ...state, isLoaddingRoute: false }

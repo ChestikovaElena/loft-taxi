@@ -16,13 +16,6 @@ describe("getCard", () => {
   describe("#GET_CARD_SUCCESS", () => {
     it('returns isLoadding false', () => {
       expect(card({}, getCardSuccess())).toEqual({
-        "data": {
-          "cardName": '',
-          "cardNumber": undefined,
-          "cvc": undefined,
-          "expiryDate": undefined,
-          "id": '',
-        },
         "isLoaddingCard": false,
         "isUpdatedCard": false,
       });

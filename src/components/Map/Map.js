@@ -37,12 +37,10 @@ export class MapComponent extends React.Component{
 }
 
 MapComponent.propTypes = {
-  isLoaddingRoute: PropTypes.bool,
   route: PropTypes.array
 }
 
 const mapStateToProps = ({ route }) => ({
-  isLoaddingRoute: route.isLoaddingRoute,
   route: route.route,
 });
 

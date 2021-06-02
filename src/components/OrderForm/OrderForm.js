@@ -99,7 +99,7 @@ export class OrderComponent extends React.Component {
     return (
       <>
         {this.props.isProfileComplete ?
-          this.props.isLoaddingRoute  ?
+          this.props.route.length !== 0 ?
             <div className='form__wrapper form__wrapper--warning-order'>
             <h2 className='form__title form__title--warning-order' data-testid="header">Заказ размещен</h2>
             <div className='form__subtitle form__subtitle--warning-order'>
@@ -116,54 +116,57 @@ export class OrderComponent extends React.Component {
             </StyledButton>
           </div>
             :
-            <form className='form__wrapper form__wrapper--order'>
-            <div className='order__block'>
-              <div className='order__row'>
-                <CssInputLabel id='route-from-label'>Откуда</CssInputLabel>
-                <CssSelect
-                  className ='form__select'
-                  name='fromAddress'
-                  value={this.state.fromAddress}
-                  onChange={this.handleChange}
-                  labelId='route-from-label'
-                >{this.state.fromList
-                  .filter(address => address !== this.state.toAddress)
-                  .map((address, i) => (
-                    <MenuItem key={i} value={address}>
-                      {address}
-                    </MenuItem>
-                  ))}
-                </CssSelect>
+            this.props.isLoaddingRoute ?
+              <div className='form__wrapper'>Маршрут загружается</div>
+              :
+              <form className='form__wrapper form__wrapper--order'>
+                <div className='order__block'>
+                  <div className='order__row'>
+                    <CssInputLabel id='route-from-label'>Откуда</CssInputLabel>
+                    <CssSelect
+                      className ='form__select'
+                      name='fromAddress'
+                      value={this.state.fromAddress}
+                      onChange={this.handleChange}
+                      labelId='route-from-label'
+                    >{this.state.fromList
+                      .filter(address => address !== this.state.toAddress)
+                      .map((address, i) => (
+                        <MenuItem key={i} value={address}>
+                          {address}
+                        </MenuItem>
+                      ))}
+                    </CssSelect>
+                  </div>
+                  <div className='order__row'>
+                    <CssInputLabel id='route-to-label'>Куда</CssInputLabel>
+                    <CssSelect
+                      name='toAddress'
+                      value={this.state.toAddress}
+                      onChange={this.handleChange}
+                      labelId='route-to-label'
+                    >{this.state.toList
+                      .filter(address => address !== this.state.fromAddress)
+                      .map((address, i) => (
+                        <MenuItem key={i} value={address}>
+                          {address}
+                        </MenuItem>
+                      ))}
+                    </CssSelect>
+                  </div>
+                </div>
+                <div className='order__block order__block--padding-big'>
+                <StyledButton
+                  type="submit"
+                  className='button form__button'
+                  data-testid="submitButton"
+                  color="primary"
+                  onClick={this.getRoutes}
+                >
+                  Заказать
+                </StyledButton>
               </div>
-              <div className='order__row'>
-                <CssInputLabel id='route-to-label'>Куда</CssInputLabel>
-                <CssSelect
-                  name='toAddress'
-                  value={this.state.toAddress}
-                  onChange={this.handleChange}
-                  labelId='route-to-label'
-                >{this.state.toList
-                  .filter(address => address !== this.state.fromAddress)
-                  .map((address, i) => (
-                    <MenuItem key={i} value={address}>
-                      {address}
-                    </MenuItem>
-                  ))}
-                </CssSelect>
-              </div>
-            </div>
-            <div className='order__block order__block--padding-big'>
-              <StyledButton
-                type="submit"
-                className='button form__button'
-                data-testid="submitButton"
-                color="primary"
-                onClick={this.getRoutes}
-              >
-                Заказать
-              </StyledButton>
-            </div>
-          </form>
+              </form>
           :
           <div className='form__wrapper form__wrapper--warning warning--order'>
             <div className='form__subtitle form__subtitle--warning'>

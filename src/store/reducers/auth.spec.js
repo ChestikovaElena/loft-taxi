@@ -3,24 +3,24 @@ import {logIn, logOut, logInError} from '../actions/auth'
 
 describe("auth", () => {
   describe("#LOG_IN", () => {
-    it('returns isLoggedIn true', () => {
+    it('returns isLoggingIn false', () => {
       expect(auth({}, logIn())).toEqual({
       "error": "",
-      "isLoggedIn": true});
+      "isLoggingIn": false});
     });
   });
 
   describe("#LOG_OUT", () => {
-    it('returns isLoggedIn false', () => {
+    it('returns isLoggingIn false', () => {
       expect(auth({}, logOut())).toEqual({
-        "isLoggedIn": false,
+        "isLoggingIn": false,
         "token": ""});
     });
   });
 
   describe("#LOG_IN_ERROR", () => {
-    it('returns isLoggedIn false', () => {
-      expect(auth({}, logInError())).toEqual({isLoggedIn: false});
+    it('returns isLoggingIn false', () => {
+      expect(auth({}, logInError())).toEqual({isLoggingIn: false});
     });
   });
 });
