@@ -29,7 +29,7 @@ describe("App", () => {
       // fireEvent.click(getByText('Карта'));
       // expect(container.innerHTML).toMatch("Map content");
       // fireEvent.click(getByText('Профиль'));
-      // expect(container.innerHTML).toMatch("Profile content");
+      expect(container.innerHTML).toMatch("Profile content");
     });
   });
 });
