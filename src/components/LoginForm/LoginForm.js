@@ -105,7 +105,6 @@ export const LoginForm = ( {authenticate, changeAuthMode} ) => {
                     errors.email.message
                   )}
                   fullWidth
-                  autofocus
                   data-testid="emailInput"
                 />
               );
