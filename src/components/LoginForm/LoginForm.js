@@ -31,6 +31,10 @@ const StyledButton = withStyles({
     padding: '15px 140px',
     '&:hover': {
       backgroundColor: '#FFA842',
+    },
+    '&:disabled': {
+      backgroundColor: '#D8D7D5',
+      color: '#737373',
     }
   },
   label: {
@@ -70,13 +74,15 @@ const CssTextField = withStyles({
 export const LoginForm = ( {authenticate, changeAuthMode} ) => {
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     control
   } = useForm({ mode:"onSubmit", resolver: yupResolver(schema) });
 
   const submitLogic = (formData) => {
     authenticate(formData.email, formData.password);
   };
+
+  const isNotAvailable = !(dirtyFields.email && dirtyFields.password);
 
   return (
     <div className='form__wrapper' data-testid="loginForm">
@@ -120,6 +126,7 @@ export const LoginForm = ( {authenticate, changeAuthMode} ) => {
                   helperText={errors?.password?.message && (
                     errors.password.message
                   )}
+                  type="password"
                   fullWidth
                   data-testid="passwordInput"
                 />
@@ -133,6 +140,7 @@ export const LoginForm = ( {authenticate, changeAuthMode} ) => {
             className='button form__button'
             data-testid="submitButton"
             color="primary"
+            disabled={isNotAvailable}
           >
             Войти
           </StyledButton>
