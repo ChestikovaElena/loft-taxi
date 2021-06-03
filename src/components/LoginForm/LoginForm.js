@@ -105,6 +105,7 @@ export const LoginForm = ( {authenticate, changeAuthMode} ) => {
                     errors.email.message
                   )}
                   fullWidth
+                  autofocus
                   data-testid="emailInput"
                 />
               );
@@ -138,9 +139,9 @@ export const LoginForm = ( {authenticate, changeAuthMode} ) => {
           <StyledButton
             type="submit"
             className='button form__button'
-            data-testid="submitButton"
             color="primary"
             disabled={isNotAvailable}
+            data-testid="buttonSubmit"
           >
             Войти
           </StyledButton>
