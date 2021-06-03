@@ -25,8 +25,6 @@ const deleteLayer = ( LAYER_ID, map) => {
 };
 
 export const drawRoute = (map, coordinates) => {
-  // const layerById = map.getStyle('route');
-  // console.log('----l', layerById);
   const LAYER_ID = 'route';
 
   deleteLayer(LAYER_ID, map);

@@ -59,7 +59,6 @@ describe('getRouteSaga', () => {
       { payload: {} }
     );
 
-    console.log('----', dispatched);
     expect(requestRoute).toHaveBeenCalledTimes(1);
     expect(dispatched).toEqual([getRouteFailure(dummyFailureResponse)]);
     requestRoute.mockClear();

@@ -93,8 +93,6 @@ export const RegForm = ( {registrate, changeAuthMode} ) => {
     dirtyFields.password
   );
 
-  console.log('---', isNotAvailable);
-
   return (
     <div className='form__wrapper'>
       <h2 className='form__title' data-testid="header">Регистрация</h2>

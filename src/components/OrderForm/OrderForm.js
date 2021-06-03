@@ -38,6 +38,10 @@ const StyledButton = withStyles({
     padding: '13px 90px',
     '&:hover': {
       backgroundColor: '#FFA842',
+    },
+    '&:disabled': {
+      backgroundColor: '#D8D7D5',
+      color: '#737373',
     }
   },
   label: {
@@ -51,8 +55,8 @@ export class OrderForm extends React.Component {
     toAddress: '',
     fromList: [],
     toList: [],
-    bothSelected: false,
     setAddressError: '',
+    isLoadedRoute: this.props.route && this.props.route.length!== 0,
   };
 
   handleChange = event => {
@@ -80,6 +84,7 @@ export class OrderForm extends React.Component {
   componentDidMount() {
     this.props.getCard && this.props.getCard(this.props.token);
     this.props.getAddresses && this.props.getAddresses();
+    this.setState({isLoadedRoute: this.props.route && this.props.route.length!== 0});
     if (!!this.props.addresses) {
       this.setState({ fromList: this.props.addresses })
       this.setState({ toList: this.props.addresses })
@@ -91,15 +96,16 @@ export class OrderForm extends React.Component {
       this.setState({ 
         fromList: this.props.addresses,
         toList: this.props.addresses,
+        isLoadedRoute: this.props.route && this.props.route.length!== 0
       })
-    }
+    };
   }
 
   render() {
     return (
       <>
         {this.props.isProfileComplete ?
-          this.props.isLoadedRoute ?
+          this.state.isLoadedRoute ?
             <div className='form__wrapper form__wrapper--warning-order'>
             <h2 className='form__title form__title--warning-order' data-testid="header">Заказ размещен</h2>
             <div className='form__subtitle form__subtitle--warning-order'>
@@ -161,6 +167,7 @@ export class OrderForm extends React.Component {
                   className='button form__button'
                   data-testid="submitButton"
                   color="primary"
+                  disabled={!(this.state.fromAddress && this.state.toAddress)}
                   onClick={this.getRoutes}
                 >
                   Заказать
@@ -193,7 +200,6 @@ OrderForm.propTypes = {
   errorAddresses: PropTypes.string,
   addresses: PropTypes.array,
   isLoaddingRoute: PropTypes.bool,
-  isLoadedRoute: PropTypes.bool,
   route: PropTypes.array,
   errorRoute: PropTypes.string,
   getCard: PropTypes.func,
@@ -208,7 +214,6 @@ const mapStateToProps = ({ auth, card, addresses, route }) => ({
   errorAddresses: addresses.error,
   addresses: addresses.addresses,
   isLoaddingRoute: route.isLoaddingRoute,
-  isLoadedRoute: route.route!== undefined && route.route!== [],
   route: route.route,
   errorRoute: route.error,
 });

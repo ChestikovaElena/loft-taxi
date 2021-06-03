@@ -5,15 +5,16 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 
 describe("OrderForm", () => {
   it("renders when profile is complete and route is loaded", () => {
-    const { getByTestId } = render(<OrderForm isProfileComplete isLoadedRoute/>);
-    expect(getByTestId('header').textContent).toBe('Заказ размещен');
+    const { getByTestId } = render(<OrderForm isProfileComplete route={[[20,20]]}/>);
+    
+    expect(getByTestId('submitButton').textContent).toBe('Сделать новый заказ');
   })
   it("renders when profile is complete and route is loadding", () => {
-    const { getByTestId } = render(<OrderForm isProfileComplete isLoadedRoute={false} isLoaddingRoute/>);
+    const { getByTestId } = render(<OrderForm isProfileComplete route={[]} isLoaddingRoute/>);
     expect(getByTestId('header').textContent).toBe('Маршрут загружается');
   })
   it("renders when profile is complete and route is not loaded", () => {
-    const { getByTestId } = render(<OrderForm isProfileComplete isLoadedRoute={false} isLoaddingRoute={false}/>);
+    const { getByTestId } = render(<OrderForm isProfileComplete route={[]} isLoaddingRoute={false}/>);
     expect(getByTestId('fromAddress').textContent).toBe('Откуда');
   })
   it("renders when profile is not complete", () => {

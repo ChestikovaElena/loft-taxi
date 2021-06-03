@@ -8,6 +8,7 @@ import logo from '../../images/icons/logo.png';
 import logoText from '../../images/icons/logo-text.png';
 import { connect } from 'react-redux';
 import { logOut } from '../../store/actions/auth';
+import { resetRoute } from '../../store/actions/route';
 import { Link } from 'react-router-dom';
 
 const StyledButton = withStyles({
@@ -24,6 +25,7 @@ export class Header extends React.Component {
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
+    this.props.resetRoute();
   };
 
   render() {
@@ -60,8 +62,7 @@ export class Header extends React.Component {
   };
 };
 
-const HeaderWithConnect = connect(
-  null,
-  { logOut }
-)(Header);
+const mapDispatchToProps = { logOut, resetRoute }
+
+const HeaderWithConnect = connect(null, mapDispatchToProps)(Header);
 export { HeaderWithConnect };
