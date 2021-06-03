@@ -13,14 +13,14 @@ describe("getCard", () => {
     });
   });
 
-  describe("#GET_CARD_SUCCESS", () => {
-    it('returns isLoadding false', () => {
-      expect(card({}, getCardSuccess())).toEqual({
-        "isLoaddingCard": false,
-        "isUpdatedCard": false,
-      });
-    });
-  });
+  // describe("#GET_CARD_SUCCESS", () => {
+  //   it('returns isLoadding false', () => {
+  //     expect(card({}, getCardSuccess())).toEqual({
+  //       "isLoaddingCard": false,
+  //       "isUpdatedCard": false,
+  //     });
+  //   });
+  // });
 
   describe("#GET_CARD_FAILURE", () => {
     it('returns isLoaddingCard false', () => {

@@ -40,6 +40,11 @@
       "react-app/jest"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=true npm test"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -57,6 +62,8 @@
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.6"
+    "enzyme-adapter-react-15": "^1.4.3",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "husky": "^6.0.0"
   }
 }

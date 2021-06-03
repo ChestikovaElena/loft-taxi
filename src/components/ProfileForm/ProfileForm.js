@@ -44,17 +44,17 @@ const CssTextField = withStyles({
   }
 })(TextField);
 
-class ProfileForm extends React.Component {
+export class ProfileForm extends React.Component {
   componentDidMount() {
-    this.props.getCard(this.props.token);
+    this.props.getCard&&this.props.getCard(this.props.token);
   };
   
   state = {
-    id: this.props.cardData.id,
-    cardNumber: this.props.cardData.cardNumber,
-    expiryDate: this.props.cardData.expiryDate,
-    cardName: this.props.cardData.cardName,
-    cvc: this.props.cardData.cvc,
+    id: this.props.cardData && this.props.cardData.id,
+    cardNumber: this.props.cardData && this.props.cardData.cardNumber,
+    expiryDate: this.props.cardData && this.props.cardData.expiryDate,
+    cardName: this.props.cardData && this.props.cardData.cardName,
+    cvc: this.props.cardData && this.props.cardData.cvc,
     errorTextName: '',
     errorTextCard: '',
     errorTextDate: '',
@@ -93,7 +93,7 @@ class ProfileForm extends React.Component {
       <>
       {this.props.isLoaddingCard
         ?
-        <div className='form__wrapper form__wrapper--profile'>Loading...</div>
+        <div className='form__wrapper form__wrapper--profile' data-testid='header'>Loading...</div>
         :
         this.props.isUpdatedCard
         ?
