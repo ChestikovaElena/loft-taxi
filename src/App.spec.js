@@ -13,13 +13,13 @@ jest.mock("./pages/Profile", () => ({ Profile: () => <div>Profile content</div> 
 
 describe("App", () => {
   it("renders correctly", () => {
-    // const { container } = render(
-    //   <BrowserRouter>
-    //     <Provider store={store}>
-    //       <AppComponent />
-    //     </Provider>
-    //   </BrowserRouter>
-    // );
+    const { container } = render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <AppComponent />
+        </Provider>
+      </BrowserRouter>
+    );
     expect(container.innerHTML).toMatch("Map content");
   });
 
