@@ -37,6 +37,27 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
+const StyledButton = withStyles({
+  root: {
+    backgroundColor: '#FDBF5A',
+    borderRadius: '70px',
+    border: 0,
+    color: '#000',
+    fontSize: '25px',
+    padding: '15px 60px',
+    '&:hover': {
+      backgroundColor: '#FFA842',
+    },
+    '&:disabled': {
+      backgroundColor: '#D8D7D5',
+      color: '#737373',
+    }
+  },
+  label: {
+    textTransform: 'capitalize',
+  },
+})(Button);
+
 const StyledLink = withStyles({
   root: {
     backgroundColor: 'transparent',
@@ -55,7 +76,7 @@ const StyledLink = withStyles({
 export const RegForm = ( {registrate, changeAuthMode} ) => {
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     control
   } = useForm({ mode:"onSubmit", resolver: yupResolver(schema) });
 
@@ -65,6 +86,14 @@ export const RegForm = ( {registrate, changeAuthMode} ) => {
     const surname = nameArray[1]||"";
     registrate(formData.email, formData.password, name, surname);
   };
+
+  const isNotAvailable = !(
+    dirtyFields.email &&
+    dirtyFields.name &&
+    dirtyFields.password
+  );
+
+  console.log('---', isNotAvailable);
 
   return (
     <div className='form__wrapper'>
@@ -140,13 +169,14 @@ export const RegForm = ( {registrate, changeAuthMode} ) => {
           />
         </div>
         <div className="form__row">
-          <button
+          <StyledButton
             type="submit"
             className='button form__button'
             data-testid="regButton"
+            disabled={isNotAvailable}
           >
             Зарегистрироваться
-          </button>
+          </StyledButton>
         </div>
       </form>
       <div className='form__reg'>

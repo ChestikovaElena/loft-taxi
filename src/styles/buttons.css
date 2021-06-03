@@ -10,6 +10,11 @@
   display: inline-block;
 }
 
+.button:disabled {
+  background-color: '#D8D7D5';
+  color: '#737373';
+}
+
 .button:hover {
   background-color: #FFA842;
 }
