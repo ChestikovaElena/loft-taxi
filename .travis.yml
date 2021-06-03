@@ -6,3 +6,7 @@ cache:
   - node_modules
 script:
   - npm run test
+deploy:
+  provider: heroku
+  api_key: 4bf9d26e-2cbf-4a5f-a537-b41f5b5918c3
+  app: ancient-dusk-96302
