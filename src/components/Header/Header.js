@@ -9,7 +9,7 @@ import logoText from '../../images/icons/logo-text.png';
 import { connect } from 'react-redux';
 import { logOut } from '../../store/actions/auth';
 import { resetRoute } from '../../store/actions/route';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const StyledButton = withStyles({
   root: {
@@ -40,10 +40,22 @@ export class Header extends React.Component {
             <nav className="header__menu" data-testid="menu">
               <ul className="menu__list">
                 <li className="menu__item">
-                  <Link to="/map" className='header__button'>Карта</Link>
+                  <NavLink
+                    to="/map"
+                    className='header__button'
+                    activeStyle={{color: "#FDBF5A"}}
+                  >
+                    Карта
+                  </NavLink>
                 </li>
                 <li className="menu__item">
-                  <Link to="/profile" className='header__button'>Профиль</Link>
+                  <NavLink
+                    to="/profile"
+                    className='header__button'
+                    activeStyle={{color: "#FDBF5A"}}
+                  >
+                    Профиль
+                  </NavLink>
                 </li>
                 <li className="menu__item">
                   <StyledButton
