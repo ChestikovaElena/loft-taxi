@@ -10,9 +10,7 @@ export class MapComponent extends React.Component{
 
   componentDidMount() {
     const mapGL = mapApi.createMap(this.mapContainer.current);
-    mapGL.on('load', () => {
-      this.setState({ map: mapGL });
-    });
+    this.setState({ map: mapGL });
   };
 
   componentDidUpdate(prevProps) {
