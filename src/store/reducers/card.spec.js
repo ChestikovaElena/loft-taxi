@@ -1,5 +1,5 @@
 import card from './card';
-import {getCard, getCardSuccess, getCardFailure,
+import {getCard, getCardSuccess, GET_CARD_SUCCESS, getCardFailure,
         updateCard, updateCardSuccess, updateCardError}
       from '../actions/card';
 
@@ -15,9 +15,16 @@ describe("getCard", () => {
 
   describe("#GET_CARD_SUCCESS", () => {
     it('returns isLoadding false', () => {
-      expect(card({}, getCardSuccess())).toEqual({
+      const dataPayload = {
+        'id': '123',
+        'expiryDate': '1/11',
+        'cardName': 'Name',
+        'cvc': '111',
+        'cardNumber': '11112321'};
+      expect(card({}, getCardSuccess(dataPayload))).toEqual({
         "isLoaddingCard": false,
         "isUpdatedCard": false,
+        data: dataPayload,
       });
     });
   });
