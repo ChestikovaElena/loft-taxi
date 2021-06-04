@@ -1,5 +1,5 @@
 import card from './card';
-import {getCard, getCardSuccess, GET_CARD_SUCCESS, getCardFailure,
+import {getCard, getCardSuccess, getCardFailure,
         updateCard, updateCardSuccess, updateCardError}
       from '../actions/card';
 
