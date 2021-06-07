@@ -5,7 +5,7 @@
 
   Все компоненты, редьюсеры, саги покрыты тестами.
 
-  Посмотреть проект на [Heroku]()
+  Посмотреть проект на [githubPages] (https://chestikovaelena.github.io/)loft-taxi/
 
   Данные для авторизации:
 
@@ -26,7 +26,6 @@
 + Jest
 + husky API
 + Travis CI
-+ Heroku
 
 ## Старт проекта
 
