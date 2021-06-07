@@ -21,26 +21,26 @@ describe('Header', () => {
   });
 
   describe("when clicked on navigation buttons", () => {
-    it("opens the corresponding page", () => {
-      const mockStore = {
-        getState: () => ({}), // auth: { token: 'token' } 
-        subscribe: () => {},
-        dispatch: () => {},
-      };
-      const history = createMemoryHistory();
-      const { container, getByText } = render(
-        <Router history={history}>
-          <Provider store={mockStore}>
-            <Header />
-          </Provider>
-        </Router>
-      );
+    // it("opens the corresponding page", () => {
+    //   const mockStore = {
+    //     getState: () => ({}), // auth: { token: 'token' } 
+    //     subscribe: () => {},
+    //     dispatch: () => {},
+    //   };
+    //   const history = createMemoryHistory();
+    //   const { container, getByText } = render(
+    //     <Router history={history}>
+    //       <Provider store={mockStore}>
+    //         <Header />
+    //       </Provider>
+    //     </Router>
+    //   );
 
-      expect(container.innerHTML).toMatch("header");
-      fireEvent.click(getByText("Карта"));
-      expect(container.innerHTML).toMatch("Map content");
-      fireEvent.click(getByText("Профиль"));
-      expect(container.innerHTML).toMatch("Profile content");
-    });
+    //   expect(container.innerHTML).toMatch("header");
+    //   fireEvent.click(getByText("Карта"));
+    //   expect(container.innerHTML).toMatch("Map content");
+    //   fireEvent.click(getByText("Профиль"));
+    //   expect(container.innerHTML).toMatch("Profile content");
+    // });
   });
 });

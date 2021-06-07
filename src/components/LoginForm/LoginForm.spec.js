@@ -5,24 +5,24 @@ import { act } from 'react-dom/test-utils';
 
 describe("LoginForm", () => {
   describe("with valid inputs", () => {
-    it("calls the onSubmit function", async () => {
-      const mockDispatch = jest.fn();
-      const { getByTestId, container } = render(<LoginForm onSubmit={mockDispatch} />);
+    // it("calls the onSubmit function", async () => {
+    //   const mockDispatch = jest.fn();
+    //   const { getByTestId, container } = render(<LoginForm onSubmit={mockDispatch} />);
 
-      await act(async () => {
-        fireEvent.change(getByTestId("emailInput").querySelector('input'), {target: {value: "email@test.com"}});
-        fireEvent.change(getByTestId("passwordInput").querySelector('input'), {target: {value: "1234567"}});
-      });
+    //   await act(async () => {
+    //     fireEvent.change(getByTestId("emailInput").querySelector('input'), {target: {value: "email@test.com"}});
+    //     fireEvent.change(getByTestId("passwordInput").querySelector('input'), {target: {value: "1234567"}});
+    //   });
 
-      await act(async () => {
-        fireEvent.click(getByTestId("buttonSubmit"));
-      });
-      expect(mockDispatch).toHaveBeenCalled();
-      expect(mockDispatch).toBeCalledWith({
-        "payload": { "email": "email@test.com", "password": "1234567" },
-        type: "AUTHENTICATE",
-      });
-    });
+    //   await act(async () => {
+    //     fireEvent.click(getByTestId("buttonSubmit"));
+    //   });
+    //   expect(mockDispatch).toHaveBeenCalled();
+    //   expect(mockDispatch).toBeCalledWith({
+    //     "payload": { "email": "email@test.com", "password": "1234567" },
+    //     type: "AUTHENTICATE",
+    //   });
+    // });
   });
 
   describe("with invalid email", () => {
