@@ -1,0 +1,12 @@
+.form__wrapper--warning {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__title--warning {
+  margin-bottom: 15px;
+}
+
+.form__subtitle--warning {
+  margin-bottom: 30px;
+}

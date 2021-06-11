@@ -1,41 +1,45 @@
-import React, { useState } from 'react';
-import { Header } from './components/Header';
-import {Map} from './components/Map';
-import {Profile} from './components/Profile';
-import { Home } from './components/Home';
-import { LoginForm } from './components/LoginForm';
-import { RegForm } from './components/RegForm';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { PrivateRoute } from './PrivateRoute';
+import PropTypes from 'prop-types';
+
+import HeaderWithConnect from './components/Header';
+import MapPage from './pages/MapPage';
+import Profile from './pages/Profile';
+import Home from './pages/Home';
 import './App.css';
 
-const PAGES = {
-  map: <Map/>,
-  profile: <Profile/>,
-  loginPage: <Home/>,
-  regPage: <Home/>
-}
-
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { page: 'loginPage' }
-  }
-
-  navigateTo = (page) => {
-    this.setState({ page});
-  }
+export class AppComponent extends React.Component {
   render() {
     return (
-      <React.Fragment>
-        <main>
-          {PAGES[this.state.page]}
-          {this.state.page === 'map' ? (<Header navigateTo={this.navigateTo}/>) : null}
-          {this.state.page === 'profile' ? (<Header navigateTo={this.navigateTo}/>) : null}
-          {this.state.page === 'loginPage' ? <LoginForm navigateTo={this.navigateTo}/> : null}
-          {this.state.page === 'regPage' ? <RegForm navigateTo={this.navigateTo}/> : null}
-        </main>
-      </React.Fragment>
-    )
-  }
-}
+      <main data-testid="container">
+        {this.props.isLoggedIn && <HeaderWithConnect />}
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => this.props.isLoggedIn
+              ? <Redirect to="/map" /> : <Home />}
+          />
+          <PrivateRoute path="/map" component={MapPage} />
+          <PrivateRoute path="/profile" component={Profile} />
+        </Switch>
+      </main>
+    );
+  };
+};
 
+AppComponent.propTypes = {
+  isLoggingIn: PropTypes.bool,
+  token: PropTypes.string,
+};
+
+const mapStateToProps = ( {auth} ) => ({
+  isLoggingIn: auth.isLoggingIn,
+  isLoggedIn: !!auth.token,
+  error: auth.error,
+});
+
+const App = connect(mapStateToProps)(AppComponent);
 export default App;

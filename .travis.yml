@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm run test
+deploy:
+  provider: heroku
+  api_key:
+    secure: g5TpAOK4/TPjD0VfEpKijBXE3/PWapGPitWkv6IzctS/E4qRlIhnGKUB0BUcBM8EywMvdfxToLtdT04lul/D5se/sezJ+DTbQi5nD2mEwpvhE770PQYbGa2Nk+gTjALgP1ITbSuToh5oXWeslrSRi9UAKLX+I7TjZy7m+pjWKs8JQsqzisay0nMfITdBZEF9zrODzrSkV3yr5mChW6WlLr/k7fdWZHThcZbIogvrOdjz+F0NIrrHs5kar3porGkjr09M7IqkOCCero6QZDjov35l4bqz8bahhj9JdmZ+wfL2Ke0VZdJE+s+KkYVDfzJPVsVJas0iKETRizMiyqoSF5TyZjMz9ZpWOCXdWG28usxtHxwWI/QPaf18u9b3f3JPGwippdJ1q6+/2EP8BIMA1KWVSq+rRq8SOh8aTtfZK8Dz2YeTainFzGoje3FbnHqcHPAnCDQh8/oU8WZE9hzxDdijIEfZjPvB5bRcSljP4YImEAfkN8lRQ2RukdtpdOg/Ka7lYDvTMoxWj9FLWjr7H/hZS/+Z4r22GmetLhBJ8/v3JgEoYjwCFdpfUyZTozhYIdns6v/kqm4JwtVrfy8NjfllXjNohUb1z/3XWFa08shkf44xphxkoGdgV3130qTd5he1yBdhUEB2fPAk1oA2ob41C2UZivE7QdjzleZyadU=
+    app: still-tor-52997
