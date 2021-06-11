@@ -5,8 +5,6 @@
 
   Все компоненты, редьюсеры, саги покрыты тестами.
 
-  Посмотреть проект на [githubPages] (https://chestikovaelena.github.io/)loft-taxi/
-
   Данные для авторизации:
 
   + Логин: test@test.com
