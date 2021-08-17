@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Container from '@material-ui/core/container';
+import { Container } from '@material-ui/core';
 import Button from "@material-ui/core/Button";
 import { withStyles } from '@material-ui/core/styles';
 import logo from '../../images/icons/logo.png';
