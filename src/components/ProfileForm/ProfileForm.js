@@ -91,118 +91,118 @@ export class ProfileForm extends React.Component {
   render() {
     return (
       <>
-      {this.props.isLoaddingCard
-        ?
-        <div className='form__wrapper form__wrapper--profile' data-testid='header'>Loading...</div>
-        :
-        this.props.isUpdatedCard
-        ?
-        <ProfileWarning />
-        :
-        <div className='form__wrapper form__wrapper--profile'>
-          <h2 className='form__title form__title--profile'>Профиль</h2>
-          <div className='form__subtitle'>Введите платежные данные</div>
-          <form className='form__form'>
-            <div className="form__block">
-              <div className='form__column'>
-                <div className='form__row'>
-                  <CssTextField
-                    required
-                    className='form__input'
-                    pattern='[A-Za-zА-Яа-яЁё]'
-                    id="name"
-                    label="Имя владельца"
-                    type="text"
-                    name="cardName"
-                    data-testid="nameInput"
-                    placeholder="Loft"
-                    value = {this.state.cardName}
-                    error= {this.state.errorTextName !== ''}
-                    helperText={this.state.errorTextName}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="form__row">
-                  <CssTextField
-                    required
-                    className='form__input'
-                    id="card"
-                    label="Номер карты"
-                    name="cardNumber"
-                    data-testid="cardInput"
-                    placeholder="5545230034324521"
-                    value = {this.state.cardNumber}
-                    error= {this.state.errorTextCard !== ''}
-                    helperText={this.state.errorTextCard}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="form__row form__row--profile">
-                  <div className="row__input row__input--small">
+        {this.props.isLoaddingCard
+          ?
+          <div className='form__wrapper form__wrapper--profile' data-testid='header'>Loading...</div>
+          :
+          this.props.isUpdatedCard
+          ?
+          <ProfileWarning />
+          :
+          <div className='form__wrapper form__wrapper--profile'>
+            <h2 className='form__title form__title--profile'>Профиль</h2>
+            <div className='form__subtitle'>Введите платежные данные</div>
+            <form className='form__form'>
+              <div className="form__block">
+                <div className='form__column'>
+                  <div className='form__row'>
                     <CssTextField
                       required
-                      className='form__input form__input--small'
-                      id="date"
-                      label="MM/YY"
-                      name="expiryDate"
-                      data-testid="dateInput"
-                      placeholder="05/08"
-                      value = {this.state.expiryDate}
-                      error= {this.state.errorTextDate !== ''}
-                      helperText={this.state.errorTextDate}
+                      className='form__input'
+                      pattern='[A-Za-zА-Яа-яЁё]'
+                      id="name"
+                      label="Имя владельца"
+                      type="text"
+                      name="cardName"
+                      data-testid="nameInput"
+                      placeholder="Loft"
+                      value = {this.state.cardName}
+                      error= {this.state.errorTextName !== ''}
+                      helperText={this.state.errorTextName}
                       onChange={this.handleChange}
                     />
                   </div>
-                  <div className="row__input row__input--small">
+                  <div className="form__row">
                     <CssTextField
                       required
-                      className='form__input form__input--small'
-                      id="cvc"
-                      label="CVC"
-                      name="cvc"
-                      data-testid="cvcInput"
-                      placeholder="667"
-                      value = {this.state.cvc}
-                      error= {this.state.errorTextCvc !== ''}
-                      helperText={this.state.errorTextCvc}
+                      className='form__input'
+                      id="card"
+                      label="Номер карты"
+                      name="cardNumber"
+                      data-testid="cardInput"
+                      placeholder="5545230034324521"
+                      value = {this.state.cardNumber}
+                      error= {this.state.errorTextCard !== ''}
+                      helperText={this.state.errorTextCard}
                       onChange={this.handleChange}
                     />
                   </div>
+                  <div className="form__row form__row--profile">
+                    <div className="row__input row__input--small">
+                      <CssTextField
+                        required
+                        className='form__input form__input--small'
+                        id="date"
+                        label="MM/YY"
+                        name="expiryDate"
+                        data-testid="dateInput"
+                        placeholder="05/08"
+                        value = {this.state.expiryDate}
+                        error= {this.state.errorTextDate !== ''}
+                        helperText={this.state.errorTextDate}
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                    <div className="row__input row__input--small">
+                      <CssTextField
+                        required
+                        className='form__input form__input--small'
+                        id="cvc"
+                        label="CVC"
+                        name="cvc"
+                        data-testid="cvcInput"
+                        placeholder="667"
+                        value = {this.state.cvc}
+                        error= {this.state.errorTextCvc !== ''}
+                        helperText={this.state.errorTextCvc}
+                        onChange={this.handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className='form__column'>
+                  <div className='card'>
+                  <div className='card__wrapper'>
+                    <div className='card__row'>
+                      <img src={logo} alt="logo" className="logo-image logo-image--card"/>
+                      <span className="card__date">{this.state.expiryDate}</span>
+                    </div>
+                    <div className='card__row'>
+                      <span className="card__number">{this.state.cardNumber}</span>
+                    </div>
+                    <div className='card__row'>
+                      <img src={chip} alt="chip" className="card__chip"/>
+                      <img src={masterCard} alt="masterCard" className="card__masterCard"/>
+                    </div>
+                  </div>
+                  </div>
                 </div>
               </div>
-              <div className='form__column'>
-                <div className='card'>
-                <div className='card__wrapper'>
-                  <div className='card__row'>
-                    <img src={logo} alt="logo" className="logo-image logo-image--card"/>
-                    <span className="card__date">{this.state.expiryDate}</span>
-                  </div>
-                  <div className='card__row'>
-                    <span className="card__number">{this.state.cardNumber}</span>
-                  </div>
-                  <div className='card__row'>
-                    <img src={chip} alt="chip" className="card__chip"/>
-                    <img src={masterCard} alt="masterCard" className="card__masterCard"/>
-                  </div>
+              <div className="form__block form__block--button">
+                  <StyledButton
+                    type="submit"
+                    className='button form__button'
+                    data-testid="submitButton"
+                    color="primary"
+                    onClick={this.updateProfile}
+                  >
+                    Сохранить
+                  </StyledButton>
                 </div>
-                </div>
-              </div>
-            </div>
-            <div className="form__block form__block--button">
-                <StyledButton
-                  type="submit"
-                  className='button form__button'
-                  data-testid="submitButton"
-                  color="primary"
-                  onClick={this.updateProfile}
-                >
-                  Сохранить
-                </StyledButton>
-              </div>
-          </form>
-        </div>
-       
-      };
+            </form>
+          </div>
+        
+        };
       </>
     );
   }
